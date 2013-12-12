@@ -9,6 +9,7 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var fs = require('fs');
 
 var app = express();
 
@@ -33,20 +34,7 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-
-app.get('/stallion/:name', function (request, response, next){
-  if (request.params.name == 'chris')
-  {
-    response.send('Welcome Master.');
-  }
-  else
-    next();
-    //response.send('You are a monster ' + request.params.name);
+fs.readdirSync(__dirname + "/routes").forEach(function(file){
+  require('./routes/' + file)(app);
 });
 
-
-var items = ['smells', 'cats', 'laundry'];
-
-app.get('/items', function (req, res, next) {
-  res.send(items);
-});
