@@ -32,3 +32,22 @@ function controller($scope) {
     return array;
   }
 }
+
+function controller($scope, $http) {
+  $scope.signup = function() {
+    var user = {
+        username: $scope.username,
+        password: $scope.password,
+        first_name: $scope.first_name,
+        last_name: $scope.last_name,
+        email: $scope.email
+    };
+
+    $http.post('/signup', user).success(function(data) {
+      console.log('w00t!');
+      console.log(data);
+    })
+
+    return false;
+  }
+}

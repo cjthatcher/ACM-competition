@@ -4,33 +4,35 @@
 </head>
 <body ng-controller='controller'>
   <h5>This is my page and stuff!</h5>
-  <h3>Thank you Linda Duhadway, for teaching me to code by hand</h3>
-
-  <input type="text" ng-model='input1'>
-
-  {{4 + 7}}
-
-  {{input1}}
-
-  {{test}}
-  <p>Pick the index of your favorite fib number</p>
-  <select ng-model="favFib" ng-options='fib for fib in fibs'></select>
+  
+  <!-- Here you go Cade -->
 
 
-  {{favFib}}
+<form>
+  <label>Username:</label>
+  <input ng-model="username" type="text">
 
-  <div ng-repeat='index in range(favFib)'>
-    <input type="text" ng-model="companies[index].name">
-    <input type="text" ng-model="companies[index].a">
-    <input type="text" ng-model="companies[index].x">
-  </div>
+  <label>Password:</label>
+  <input ng-model="password" type="password">
 
-  <pre>
-    {{companies}}
-  </pre>
+  <label>Confirm Password:</label>
+  <input ng-model="confirmPassword" type="password">
 
-  <ul>
-  </ul>
+  <label>First Name:</label>
+  <input ng-model="firstName" type="text">
+
+  <label>Last Name:</label>
+  <input ng-model="lastName" type="text">
+
+  <label>Email:</label>
+  <input ng-model="email" type="email">
+
+  <input ng-click="signup()" ng-disabled="confirmPassword != password" type="submit" value="Sign Up">
+</form>
+
+
+
+
   <script src='javascripts/jquery.js'></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
 <script src='javascripts/main.js'></script>
