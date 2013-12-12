@@ -31,14 +31,23 @@
     <input ng-model="email" type="email"><br/>
 
     <input ng-click="signup()" ng-disabled="confirmPassword != password" type="submit" value="Sign Up"><br/>
+    <hr>
+    <h1>Or... Login!</h1>
+
+    <label>Username:</label>
+    <input ng-model="username" type="text"><br/>
+
+    <label>Password:</label>
+    <input ng-model="password" type="password"><br/>
+    <input ng-click="login()" type="submit" value="Login"><br/>
   </form>
 </div>
 
 
 
 
-  <script src='js/jquery.js'></script>
+  <script src="js/jquery.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
-<script src='js/main.js'></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

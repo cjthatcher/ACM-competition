@@ -2,12 +2,45 @@ module.exports = function(app){
 	app.post('/signup', signup);
 	app.post('/logout', logout);
 	app.get('/user', user);
+	app.get('/login', login);
 };
+
+//high tech database
 var db = {};
+
+function login(req, res) {
+	var user = {
+		username: req.body.username,
+		password: req.body.password
+	}
+
+	if (!db[user.username]) {
+		res.send({
+			success: false,
+			err: "No user found"
+		}); 
+	}
+
+	if (user.password != db[user.password]) {
+		res.send({
+			success: false, 
+			err: "The credentials you entered were incorrect"
+		})
+		return;
+	}
+	//session set
+	req.session.user = user;
+
+	res.send({
+		success: true,
+		user: user
+	});
+}
+
 function signup(req, res) {
 	var user = {
 		username: req.body.username,
-		password: req.body.pass,
+		password: req.body.password, // <------- this was req.body.pass, shouldn't it be password? -cade
 		first_name: req.body.first_name,
 		last_name: req.body.last_name,
 		email_address: req.body.email
@@ -15,7 +48,7 @@ function signup(req, res) {
 	if (db[user.username]) {
 		res.send({
 			success: false,
-			err: "username taken"
+			err: "That username is taken :("
 		})
 		return;
 	}
