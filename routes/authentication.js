@@ -2,7 +2,7 @@ module.exports = function(app){
 	app.post('/signup', signup);
 	app.post('/logout', logout);
 	app.get('/user', user);
-	app.get('/login', login);
+	app.post('/login', login);
 };
 
 //high tech database
@@ -14,27 +14,29 @@ function login(req, res) {
 		password: req.body.password
 	}
 
-	if (!db[user.username]) {
+	if (!db[req.body.username]) {
 		res.send({
 			success: false,
 			err: "No user found"
-		}); 
+		});
+		return; 
 	}
+	var currentUser = db[req.body.username];
+	if (currentUser.password === req.body.password) {
+		//session set
+		req.session.user = user;
 
-	if (user.password != db[user.password]) {
+		res.send({
+			success: true,
+			user: user
+		});
+	} else {
 		res.send({
 			success: false, 
 			err: "The credentials you entered were incorrect"
 		})
 		return;
 	}
-	//session set
-	req.session.user = user;
-
-	res.send({
-		success: true,
-		user: user
-	});
 }
 
 function signup(req, res) {
