@@ -3,6 +3,7 @@
 
 var MongoClient = require('mongodb').MongoClient;
 var _ = require('underscore');
+var dbc = require('config').db;
 
 module.exports = {
   create: create,
@@ -11,7 +12,7 @@ module.exports = {
   remove: remove
 };
 
-var collections = ['users', 'events', 'problems'];
+var collections = dbc.groups;
 
 _connect(function (err, db) {
   if (err) console.error(err);
@@ -61,5 +62,5 @@ function remove(type, key, cb) {
 }
 
 function _connect(cb) {
-  MongoClient.connect('mongodb://localhost:27017/acmCompetition', cb);
+  MongoClient.connect('mongodb://' + dbc.host + ':' + dbc.port + '/' + dbc.dbName, cb);
 }

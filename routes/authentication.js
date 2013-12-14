@@ -1,7 +1,7 @@
 /* jshint node:true */
 'use strict';
 
-var persistence = require('../util/persistence.js');
+var persistence = require('../utils/persistence.js');
 
 module.exports = function(app){
   app.post('/signup', signup);

@@ -1,6 +1,8 @@
 /* jshint node:true */
 'use strict';
 
+var config = require('config');
+
 module.exports = {
 	create: create,
 	read:   read,
@@ -8,7 +10,7 @@ module.exports = {
 	remove: remove
 };
 
-var strategy = require('./mongoStrategy.js');
+var strategy = require('./' + config.db.strategy + 'Strategy.js');
 
 function create(type, key, object, cb) {
 	strategy.create(type, key, object, cb);
