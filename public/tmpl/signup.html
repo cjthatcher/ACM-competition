@@ -1,25 +1,23 @@
-<div ng-show="!user">
-  <div>{{error}}</div>
-  <h1>SIGN UP PLZ</h1>
-  <form>
-    <label>Username:</label>
-    <input ng-model="username" type="text"><br/>
+<div>{{error}}</div>
+<h1>SIGN UP PLZ</h1>
+<form>
+  <label>Username:</label>
+  <input ng-model="username" type="text"><br/>
 
-    <label>Password:</label>
-    <input ng-model="password" type="password"><br/>
+  <label>Password:</label>
+  <input ng-model="password" type="password"><br/>
 
-    <label>Confirm Password:</label>
-    <input ng-model="confirmPassword" type="password"><br/>
+  <label>Confirm Password:</label>
+  <input ng-model="confirmPassword" type="password"><br/>
 
-    <label>First Name:</label>
-    <input ng-model="firstName" type="text"><br/>
+  <label>First Name:</label>
+  <input ng-model="firstName" type="text"><br/>
 
-    <label>Last Name:</label>
-    <input ng-model="lastName" type="text"><br/>
+  <label>Last Name:</label>
+  <input ng-model="lastName" type="text"><br/>
 
-    <label>Email:</label>
-    <input ng-model="email" type="email"><br/>
+  <label>Email:</label>
+  <input ng-model="email" type="email"><br/>
 
-    <input ng-click="signup()" ng-disabled="confirmPassword != password" type="submit" value="Sign Up"><br/>
-  </form>
-</div>
+  <input ng-click="signup()" ng-disabled="confirmPassword != password" type="submit" value="Sign Up"><br/>
+</form>
