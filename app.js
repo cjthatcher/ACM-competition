@@ -10,6 +10,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var fs = require('fs');
+var MongoClient = require('mongodb').MongoClient
 
 var app = express();
 
