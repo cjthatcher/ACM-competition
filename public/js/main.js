@@ -12,8 +12,8 @@ function controller($scope, $http) {
     var user = {
         username: $scope.username,
         password: $scope.password,
-        first_name: $scope.first_name,
-        last_name: $scope.last_name,
+        first_name: $scope.firstName,
+        last_name: $scope.lastName,
         email: $scope.email
     };
 
@@ -21,7 +21,7 @@ function controller($scope, $http) {
       console.log('w00t!');
       console.log(data);
       if (!data.success)
-        $scope.error = data.err; 
+        $scope.error = data.err;
       else
         $scope.user = data.user;
     })
@@ -37,14 +37,14 @@ function controller($scope, $http) {
   }
   $scope.login = function() {
     var user = {
-      username: $scope.username, 
+      username: $scope.username,
       password: $scope.password
     }
 
     $http.post('/login', user).success(function(data){
       if (!data.success)
         $scope.error = data.err;
-      else 
+      else
         $scope.user = data.user;
     });
     return false;

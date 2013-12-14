@@ -10,9 +10,6 @@ module.exports = function(app){
   app.post('/login', login);
 };
 
-//high tech database
-var db = {};
-
 function login(req, res) {
   persistence.read('users', req.body.username, function (err, user){
     if (err) {
@@ -40,6 +37,7 @@ function login(req, res) {
 }
 
 function signup(req, res) {
+  console.log('SIGNING UP');
   var user = {
     username: req.body.username,
     password: req.body.password, // <------- this was req.body.pass, shouldn't it be password? -cade
@@ -47,10 +45,6 @@ function signup(req, res) {
     last_name: req.body.last_name,
     email_address: req.body.email
   };
-  if (db[user.username]) {
-    return;
-  }
-  db[user.username] = user;
 
   persistence.create('users', user.username, user, function (err){
     if (err) {
