@@ -1,53 +1,26 @@
-<html ng-app>
+<html>
 <head>
   <title>Coding by hand!</title>
   <link rel="stylesheet" href="css/app.css">
 </head>
-<body ng-controller='controller'>
+<body>
+  
+  <div ui-view id="view"></div>
 
-  <!-- Here you go Cade -->
-<div ng-show="user">Main Page - Welcome, {{user.username}}<br>
-<button ng-click="logout()">Are you sure, {{user.username}}?</button></div>
-<div ng-show="!user">
-  <div>{{error}}</div>
-  <h1>SIGN UP PLZ</h1>
-  <form>
-    <label>Username:</label>
-    <input ng-model="username" type="text"><br/>
+  <!-- Load Libraries -->
+  <script src="js/lib/jquery.js"></script>
+  <script src="js/lib/angular.js"></script>
+  <script src="js/lib/ui-router.js"></script>
 
-    <label>Password:</label>
-    <input ng-model="password" type="password"><br/>
+  <!-- Load Module -->
+  <script src="js/module.js"></script>
 
-    <label>Confirm Password:</label>
-    <input ng-model="confirmPassword" type="password"><br/>
+  <!-- Load any controllers, directives, services, or filters -->
+  <script src="js/app/controller/main.js"></script>
+  <script src="js/app/controller/signup.js"></script>
+  <script src="js/app/controller/login.js"></script>
 
-    <label>First Name:</label>
-    <input ng-model="firstName" type="text"><br/>
-
-    <label>Last Name:</label>
-    <input ng-model="lastName" type="text"><br/>
-
-    <label>Email:</label>
-    <input ng-model="email" type="email"><br/>
-
-    <input ng-click="signup()" ng-disabled="confirmPassword != password" type="submit" value="Sign Up"><br/>
-    <hr>
-    <h1>Or... Login!</h1>
-
-    <label>Username:</label>
-    <input ng-model="username" type="text"><br/>
-
-    <label>Password:</label>
-    <input ng-model="password" type="password"><br/>
-    <input ng-click="login()" type="submit" value="Login"><br/>
-  </form>
-</div>
-
-
-
-
-  <script src="js/jquery.js"></script>
-  <script src="js/angular.js"></script>
+  <!-- Launch the App -->
   <script src="js/main.js"></script>
 </body>
 </html>

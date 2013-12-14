@@ -1,0 +1,13 @@
+<div ng-show="!user">
+  <div>{{error}}</div>
+  <form>
+    <h1>Or... Login!</h1>
+
+    <label>Username:</label>
+    <input ng-model="username" type="text"><br/>
+
+    <label>Password:</label>
+    <input ng-model="password" type="password"><br/>
+    <input ng-click="login()" type="submit" value="Login"><br/>
+  </form>
+</div>
