@@ -54,11 +54,28 @@ function read(type, key, cb) {
 }
 
 function update(type, key, object, cb) {
-
+  _connect(function (err, db) {
+    if (err) return cb(err);
+    var collection = db.collection(type);
+    var criteria = collection.findOne({key: key});
+    collection.update(criteria, object, function (err, result) {
+      if (err) return cb(err);
+      if (!result) return cb('No Key Found');
+      return cb(null, result);
+    });
+  });
 }
 
 function remove(type, key, cb) {
-
+  _connect(function (err, db) {
+    if (err) return cb(err);
+    var collection = db.collection(type);
+    collection.remove({key: key}, 1, function (err, result) {
+      console.log('did this work eh?');
+      if (err) return cb(err);
+      return cb(null, result);
+    });
+  });
 }
 
 function _connect(cb) {

@@ -36,18 +36,17 @@ function login(req, res) {
   });
 }
 
-function signup(req, res) {
-  console.log('SIGNING UP');
+function signup(req, res){
   var user = {
     username: req.body.username,
-    password: req.body.password, // <------- this was req.body.pass, shouldn't it be password? -cade
+    password: req.body.password,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email_address: req.body.email
   };
 
   persistence.create('users', user.username, user, function (err){
-    if (err) {
+    if (err){
       res.send({
         success: false,
         err: 'Username Already In Use'
@@ -63,32 +62,24 @@ function signup(req, res) {
   });
 }
 
-function logout(req, res)
-{
+function logout(req, res){
   req.session.destroy(function(){
     res.send({
       success: true
     });
   });
-  //fine.
 }
 
-function user(req, res)
-{
+function user(req, res){
   var user = req.session.user;
-
-  if (!user)
-  {
-    res.send( {
+  if (!user){
+    res.send({
       success:false
     });
-  }
-  else
-  {
-    res.send( {
+  } else {
+    res.send({
       success:true,
       user: user
     });
   }
-
 }
