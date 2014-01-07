@@ -1,11 +1,28 @@
-<div>{{error}}</div>
-<h1>Login</h1>
-<form>
-  <label>Username:</label>
-  <input ng-model="username" type="text"><br/>
+<!-- how to add in someway to test if there is an error - show only when there is an error -->
+<div class="alert alert-error" ng-show="error" style="margin-top: 25px">
+	<div>{{error}}</div>
+</div>
 
-  <label>Password:</label>
-  <input ng-model="password" type="password"><br/>
-
-  <input ng-click="login()" type="submit" value="Login"><br/>
+<form class="form-horizontal" style="margin-top: 25px">
+	<legend>Login</legend>
+	<div class="control-group">
+		<label class="control-label" for="username">Username:</label>
+		<div class="controls">
+			<input ng-model="username" type="text" id="username" autofocus>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="password">Password:</label>
+		<div class="controls">
+			<input ng-model="password" type="password" id="password">
+		</div>
+	</div>
+	<div class="control-group">
+    <div class="controls">
+      <label class="checkbox">
+        <input type="checkbox"> Remember me
+      </label>
+			<input ng-click="login()" type="submit" value="Login" class="btn btn-success">
+    </div>
+  </div>
 </form>
