@@ -1,3 +1,10 @@
-<div ng-repeat="item in nav">
-  <a href="/#{{item.url}}">{{item.label}}</a>
+<div class="navbar navbar-static-top">
+  <div class="navbar-inner">
+	  <div class="container">
+	  	<a class="brand" href="#">Title</a>
+	  	<ul class="nav" ng-repeat="item in nav">
+	  	  <li><a href="/#{{item.url}}">{{item.label}}</a></li>
+	  	</ul>
+	  </div>
+  </div>
 </div>

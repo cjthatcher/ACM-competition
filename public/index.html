@@ -1,14 +1,15 @@
 <html>
 <head>
-  <title>Coding by hand!</title>
+  <title>ACM Coding</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-
-  <h1>Acm Competition</h1>
   <div header></div>
-
-  <div ui-view id="view"></div>
+  <div class="container">
+    <h1>Acm Competition</h1>
+    <div ui-view id="view"></div>  
+  </div>
 
   <!-- Load Libraries -->
   <script src="js/lib/jquery.js"></script>
@@ -28,5 +29,6 @@
 
   <!-- Launch the App -->
   <script src="js/main.js"></script>
+  <script src="js/bootstrap.js"></script><!-- Would this go here? -->
 </body>
 </html>
