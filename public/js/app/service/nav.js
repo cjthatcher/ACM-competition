@@ -13,14 +13,16 @@ nav = [
     state: 'signup',
     url:   '/signup',
     tmpl:  'tmpl/signup.html',
-    ctrl:  'signupCtrl'
+    ctrl:  'signupCtrl',
+    loggedIn: false
   },
   {
     label: 'Login',
     state: 'login',
     url:   '/login',
     tmpl:  'tmpl/login.html',
-    ctrl:  'loginCtrl'
+    ctrl:  'loginCtrl',
+    loggedIn: false
   }
 ];
 
