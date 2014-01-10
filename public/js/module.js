@@ -1,5 +1,5 @@
 /* global angular, nav */
-angular.module('acm', ['ui.router']).config(
+angular.module('acm', ['ui.router', 'ui.bootstrap']).config(
   function ($stateProvider, $urlRouterProvider) {
     'use strict';
 
