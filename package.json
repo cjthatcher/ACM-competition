@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node server/app.js"
   },
   "dependencies": {
     "express": "3.4.0",
@@ -13,7 +13,9 @@
     "config": "~0.4.33",
     "node-uuid": "~1.4.1",
     "password-hash": "~1.2.1",
-    "request": "~2.31.0"
+    "request": "~2.31.0",
+    "q": "~1.0.0",
+    "colors": "~0.6.2"
   },
   "devDependencies": {
     "gulp": "~3.3.0"
