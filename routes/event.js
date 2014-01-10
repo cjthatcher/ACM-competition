@@ -27,11 +27,10 @@ function getEvents(req, res) {
 
 function createEvent(req, res) {
   var event = {
-    username: req.body.username,
-    password: hash.generate(req.body.password),
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email_address: req.body.email
+    name: req.body.name,
+    description: req.body.description,
+    available: false,
+    questions: []
   };
 
   db.createEvent(event, function (err, id) {
