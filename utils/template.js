@@ -11,7 +11,7 @@ exports.getUser = function (name, cb) {
 
 };
 
-exports.saveUser = function (user, cb) {
+exports.createUser = function (user, cb) {
 
 };
 

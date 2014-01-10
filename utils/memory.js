@@ -9,8 +9,8 @@ var uuid = require('node-uuid');
 
 var users = {
   admin: {
-    name: 'admin',
-    pass: hash.generate('admin'),
+    username: 'admin',
+    password: hash.generate('admin'),
     email: 'admin@usu-acm-competition.com',
     isAdmin: true
   }
@@ -29,15 +29,15 @@ exports.getUser = function (name, cb) {
   cb(null, users[name]);
 };
 
-exports.saveUser = function (user, cb) {
-  var name = user.name;
+exports.createUser = function (user, cb) {
+  var name = user.username;
   if (users[name]) return cb('User already exists');
   users[name] = user;
   cb();
 };
 
 exports.updateUser = function (user, cb) {
-  var name = user.name;
+  var name = user.username;
   if (!users[name]) return cb('User does not exist');
   users[name] = user;
   cb();

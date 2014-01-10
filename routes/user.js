@@ -1,7 +1,8 @@
 /* jshint node:true */
 'use strict';
 
-var persistence = require('../utils/persistence.js');
+var hash = require('password-hash');
+var db = require('../utils/db.js');
 
 module.exports = function(app){
   app.post('/signup', signup);
@@ -11,7 +12,7 @@ module.exports = function(app){
 };
 
 function login(req, res) {
-  persistence.read('users', req.body.username, function (err, user){
+  db.getUser(req.body.username, function (err, user) {
     if (err) {
       res.send({
         success: false,
@@ -20,7 +21,7 @@ function login(req, res) {
     return;
     }
 
-    if (user.password !== req.body.password) {
+    if (!hash.verify(req.body.password, user.password)) {
       res.send({
         success: false,
         err: 'Incorrect Credentials'
@@ -39,13 +40,13 @@ function login(req, res) {
 function signup(req, res){
   var user = {
     username: req.body.username,
-    password: req.body.password,
+    password: hash.generate(req.body.password),
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email_address: req.body.email
   };
 
-  persistence.create('users', user.username, user, function (err){
+  db.createUser(user, function (err) {
     if (err){
       res.send({
         success: false,
