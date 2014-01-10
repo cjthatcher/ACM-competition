@@ -1,5 +1,9 @@
 /* jshint node:true */
 module.exports = {
+  sessOptions: {
+    key: 'usu-acm.sid',
+    secret: 'shutupdude'
+  },
   couchConfig: {
     host: 'localhost',
     port: 5984,
