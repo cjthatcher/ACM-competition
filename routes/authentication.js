@@ -2,6 +2,7 @@
 'use strict';
 
 var persistence = require('../utils/persistence.js');
+var hash = require('password-hash');
 
 module.exports = function(app){
   app.post('/signup', signup);
@@ -20,7 +21,7 @@ function login(req, res) {
     return;
     }
 
-    if (user.password !== req.body.password) {
+    if (!hash.verify(req.body.password, user.password)) {
       res.send({
         success: false,
         err: 'Incorrect Credentials'
@@ -39,7 +40,7 @@ function login(req, res) {
 function signup(req, res){
   var user = {
     username: req.body.username,
-    password: req.body.password,
+    password: hash.generate(req.body.password),
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email_address: req.body.email

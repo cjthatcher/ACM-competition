@@ -9,8 +9,12 @@ angular.module('acm').controller('headerCtrl',
     user.check();
 
     $scope.security = function (item) {
+      if (item.hidden) return false;
+
       if (item.loggedIn) return !!user.data;
       if (item.loggedIn === false) return !user.data;
+
+      if (item.admin) return user.data && user.data.isAdmin;
       return true;
     };
 

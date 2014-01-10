@@ -6,7 +6,8 @@ nav = [
     state: 'index',
     url:   '/',
     tmpl:  'tmpl/main.html',
-    ctrl:  'mainCtrl'
+    ctrl:  'mainCtrl',
+    hidden: true
   },
   {
     label: 'Signup',
@@ -23,6 +24,14 @@ nav = [
     tmpl:  'tmpl/login.html',
     ctrl:  'loginCtrl',
     loggedIn: false
+  },
+  {
+    label: 'Admin',
+    state: 'admin',
+    url:   '/admin',
+    tmpl:  'tmpl/admin.html',
+    ctrl:  'adminCtrl',
+    admin: true
   }
 ];
 
