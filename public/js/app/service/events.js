@@ -11,11 +11,17 @@ angular.module('acm').factory('events',
     }
 
     function createEvent(event, cb) {
-
+      $http.post('/event', event).success(function (data) {
+        if (!data.success) return cb(data.err);
+        cb(null, data.id);
+      });
     }
 
     function deleteEvent(id, cb) {
-
+      $http.delete('/event/' + id).success(function (data) {
+        if (!data.success) return cb(data.err);
+        cb();
+      })
     }
 
     return {

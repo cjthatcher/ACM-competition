@@ -1,19 +1,27 @@
 /* global angular */
 angular.module('acm').controller('adminCtrl',
-  function ($scope, user) {
+  function ($scope, user, events) {
     'use strict';
+
     $scope.user = user;
 
-    var events = [];
-
-    $scope.events = events;
+    events.all(function (err, data) {
+      if (err) return $scope.err = err;
+      $scope.events = data;
+    });
 
     $scope.createEvent = function (name, description) {
-      $scope.events.push({
+      var event = {
         name: name,
         description: description,
         available: false
-      });
+      };
+
+      events.create(event, function (err, id) {
+        if (err) return $scope.err = err;
+        event.id = id;
+        $scope.events.push(event);
+      })
     }
 
     $scope.toggleEvent = function (event) {
@@ -25,8 +33,11 @@ angular.module('acm').controller('adminCtrl',
     }
 
     $scope.deleteEvent = function (event) {
-      var index = events.indexOf(event);
-      events.splice(index, 1);
+      events.remove(event.id, function (err) {
+        if (err) return $scope.err = err;
+        var index = $scope.events.indexOf(event);
+        $scope.events.splice(index, 1);
+      });
     }
   }
 );
