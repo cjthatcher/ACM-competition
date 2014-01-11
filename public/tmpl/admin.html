@@ -12,30 +12,37 @@
 		<div><button class="btn btn-success" ng-click="createEvent(name, description)">Create</button></div>
 	</form>
 </div>
-<div style="padding-top: 1px; margin-top: -1px; float: left; width: 667px;">
+<div style="float: left; width: 667px;">
 	<h2>All Events</h2>
 	<div ng-show="!events.length">
 		No events found.
 	</div>
-	<div style="max-height: 500px; overflow: auto;">
-		<table class="table" ng-show="events.length">
-			<tr>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Availability</th>
-				<th>Toggle</th>
-				<th>Edit</th>
-				<th>Delete</th>
-			</tr>
-			<tr ng-repeat="event in events">
-				<td>{{event.name}}</td>
-				<td>{{event.description}}</td>
-				<td><button ng-show="event.available" class="btn btn-success" disabled>Open</button>
-						<button ng-show="!event.available" class="btn btn-danger" disabled>Closed</button></td>
-				<td><button class="btn" ng-click="toggleEvent(event)">Toggle</button></td>
-				<td><button class="btn btn-info" ng-click="editEvent(event)">Edit</button></td>
-				<th><button class="btn btn-danger" ng-click="deleteEvent(event)">Delete</button></th>
-			</tr>
-		</table>		
+	<div>
+		<div class="table-wrap">
+			<table class="table head" ng-show="events.length" style="table-layout:fixed; margin-bottom: 10px">
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Availability</th>
+					<th>Toggle</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+			</table>
+			<div class="inner-table" style="overflow-y: auto; height: 400px;">
+				<table class="table" ng-show="events.length">
+					<tr ng-repeat="event in events">
+						<td>{{event.name}}</td>
+						<td>{{event.description}}</td>
+						<td><button ng-show="event.available" class="btn btn-success" disabled>Open</button>
+								<button ng-show="!event.available" class="btn btn-danger" disabled>Closed</button></td>
+						<td><button class="btn" ng-click="toggleEvent(event)">Toggle</button></td>
+						<td><button class="btn btn-info" ng-click="editEvent(event)">Edit</button></td>
+						<th><button class="btn btn-danger" ng-click="deleteEvent(event)">Delete</button></th>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>
+
