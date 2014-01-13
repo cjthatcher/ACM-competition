@@ -3,7 +3,9 @@
 
 // -- Initialization -----------------------------------------------------------
 
-var request = require('request');
+var request = require('request'),
+          _ = require('underscore');
+
 var cc = require('config').couchConfig;
 
 var couchUrl = 'http://' + cc.host + ':' + cc.port + '/';
@@ -24,12 +26,12 @@ exports.createUser = function (user, cb) {
 };
 
 exports.updateUser = function (user, cb) {
-  var name = user._id;
+  var name = user.username;
   _couchGet(cc.db.user, name, function (err, oldUser) {
     if (err) return cb(err);
     user._rev = oldUser._rev;
     _couchSave(cc.db.user, user, cb);
-  });
+  }, true);
 };
 
 exports.deleteUser = function (name, cb) {
@@ -57,12 +59,12 @@ exports.createEvent = function (event, cb) {
 };
 
 exports.updateEvent = function (event, cb) {
-  var id = event._id;
+  var id = event.id;
   _couchGet(cc.db.event, id, function (err, oldEvent) {
     if (err) return cb(err);
     event._rev = oldEvent._rev;
     _couchSave(cc.db.event, event, cb);
-  });
+  }, true);
 };
 
 exports.deleteEvent = function (id, cb) {
@@ -71,12 +73,16 @@ exports.deleteEvent = function (id, cb) {
 
 // -- Private Functions --------------------------------------------------------
 
-function _couchGet(db, id, cb) {
+function _couchGet(db, id, cb, saveRev) {
   var url = couchUrl + db + '/' + id;
   request(url, function (err, resp, body) {
     if (err) return cb(err);
     var json = JSON.parse(body);
     if (json.error) return cb(json.error + ': ' + json.reason);
+    if (!saveRev) {
+      delete json._id;
+      delete json._rev;
+    }
     cb(null, json);
   });
 }
@@ -104,8 +110,6 @@ function _couchDelete(db, id, cb) {
     url: url
   }, function (err, resp, body) {
     if (err) return cb(err);
-    console.log(typeof body);
-    console.log(body);
     var json = JSON.parse(body);
     if (json.error) return cb(json.error + ': ' + json.reason);
     cb();
@@ -113,10 +117,16 @@ function _couchDelete(db, id, cb) {
 }
 
 function _couchGetAll(db, cb) {
-  var url = couchUrl + db + '/_all_docs';
+  var url = couchUrl + db + '/_all_docs?include_docs=true';
   request(url, function (err, resp, body) {
     if (err) return cb(err);
     var json = JSON.parse(body);
-    cb(null, json.rows);
+    json = _.map(json.rows, function (item) {
+      console.log(json);
+      delete item.doc._id;
+      delete item.doc._rev;
+      return item.doc;
+    });
+    cb(null, json);
   });
 }
