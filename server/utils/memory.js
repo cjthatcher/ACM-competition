@@ -1,9 +1,5 @@
 /* jshint node:true */
 'use strict';
-// -- TODO -------------------------------------------------------------------
-// -- Event status is being set to closed no matter what
-
-
 
 // -- Initialization -----------------------------------------------------------
 
