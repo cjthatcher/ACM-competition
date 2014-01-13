@@ -1,0 +1,24 @@
+#adminPage .nav {
+  float: left;
+  height: 100%;
+  background-color: #535353;
+  padding: 10px 0;
+}
+#adminPage .nav-item {
+  padding: 10px;
+  width: 100px;
+  color: #1bdbff;
+}
+#adminPage .nav-item:hover {
+  color: #535353;
+}
+#adminPage .event-create {
+  float: left;
+  margin-right: 15px;
+  border-right: 1px solid #eee;
+  padding-right: 15px;
+}
+#adminPage .event-list {
+  float: left;
+  width: 547px;
+}

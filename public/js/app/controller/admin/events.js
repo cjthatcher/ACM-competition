@@ -1,5 +1,5 @@
 /* global angular */
-angular.module('acm').controller('adminCtrl',
+angular.module('acm').controller('adminEventsCtrl',
   function ($scope, user, events) {
     'use strict';
 
@@ -29,7 +29,7 @@ angular.module('acm').controller('adminCtrl',
     }
 
     $scope.editEvent = function (event) {
-      
+
     }
 
     $scope.deleteEvent = function (event) {

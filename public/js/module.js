@@ -7,9 +7,11 @@ angular.module('acm', ['ui.router', 'ui.bootstrap']).config(
       $stateProvider.state(nav[i].state, {
         templateUrl: nav[i].tmpl,
         controller: nav[i].ctrl,
-        url: nav[i].url
+        url: nav[i].v_url || nav[i].url,
+        abstract: nav[i].abstract
       });
     }
+
     $urlRouterProvider.otherwise('/');
     /* if page not found, send to index */
   }

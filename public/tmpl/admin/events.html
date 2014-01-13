@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h1>Welcome to the admin page, {{user.data.username}}</h1>
+</div>
+<div class="event-create">
+  <h2>Create an Event</h2>
+  <form>
+    <label for="name">Name:</label>
+    <input type="text" ng-model="name">
+    <label for="description">Description:</label>
+    <textarea name="description" id="description" cols="30" rows="10" ng-model="description"></textarea>
+    <div><button class="btn btn-success" ng-click="createEvent(name, description)">Create</button></div>
+  </form>
+</div>
+<div class="event-list">
+  <h2>All Events</h2>
+  <div ng-show="!events.length">
+    No events found.
+  </div>
+  <div ng-show="events.length">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Availability</th>
+          <th>Toggle</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="event in events">
+          <td>{{event.name}}</td>
+          <td>{{event.description}}</td>
+          <td>
+            <button ng-show="event.available" class="btn btn-success" disabled>Open</button>
+            <button ng-show="!event.available" class="btn btn-danger" disabled>Closed</button>
+          </td>
+          <td><button class="btn" ng-click="toggleEvent(event)">Toggle</button></td>
+          <td><button class="btn btn-info" ng-click="editEvent(event)">Edit</button></td>
+          <th><button class="btn btn-danger" ng-click="deleteEvent(event)">Delete</button></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

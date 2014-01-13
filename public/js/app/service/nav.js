@@ -26,12 +26,29 @@ nav = [
     loggedIn: false
   },
   {
-    label: 'Admin',
     state: 'admin',
     url:   '/admin',
-    tmpl:  'tmpl/admin.html',
+    tmpl:  'tmpl/admin/base.html',
     ctrl:  'adminCtrl',
+    hidden: true,
+    abstract: true
+  },
+  {
+    label: 'Admin',
+    state: 'admin.events',
+    v_url: '/events',
+    url:   '/admin/events',
+    tmpl:  'tmpl/admin/events.html',
+    ctrl:  'adminEventsCtrl',
     admin: true
+  },
+  {
+    state: 'admin.users',
+    v_url: '/users',
+    url:   '/admin/users',
+    tmpl:  'tmpl/admin/users.html',
+    ctrl:  'adminUsersCtrl',
+    hidden: true
   }
 ];
 
