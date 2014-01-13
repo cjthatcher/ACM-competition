@@ -1,6 +1,6 @@
 /* global angular */
 angular.module('acm').controller('signupCtrl',
-  function ($scope, $state, user) {
+  function ($scope, $state, alerts, user) {
     'use strict';
 
     user.on(function () {
@@ -17,7 +17,8 @@ angular.module('acm').controller('signupCtrl',
       };
 
       user.signup(userObj, function (err) {
-        $scope.error = err;
+        if (err) return alerts.create('error', err);
+        alerts.create('success', 'Successful Signup!!');
       });
 
       return false;

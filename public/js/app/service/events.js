@@ -7,6 +7,8 @@ angular.module('acm').factory('events',
       $http.get('/events').success(function (data) {
         if (!data.success) return cb(data.err);
         cb(null, data.events);
+      }).error(function (err) {
+        cb(err + ': Are you logged In?');
       });
     }
 
@@ -14,6 +16,8 @@ angular.module('acm').factory('events',
       $http.post('/event', event).success(function (data) {
         if (!data.success) return cb(data.err);
         cb(null, data.id);
+      }).error(function (err) {
+        cb(err + ': Are you logged In?');
       });
     }
 
@@ -21,7 +25,9 @@ angular.module('acm').factory('events',
       $http.delete('/event/' + id).success(function (data) {
         if (!data.success) return cb(data.err);
         cb();
-      })
+      }).error(function (err) {
+        cb(err + ': Are you logged In?');
+      });
     }
 
     return {

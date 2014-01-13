@@ -17,6 +17,8 @@ var app = express();
 
 app.set('port', process.env.PORT || config.port);
 
+var fail = require(__dirname + '/middleware/fail-routes.js');
+
 // all environments
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -28,6 +30,7 @@ app.use(express.session({
   key: sessOptions.key,
   secret: sessOptions.secret
 }));
+app.use(fail);
 app.use(app.router);
 app.use(require('stylus').middleware('public'));
 app.use(express.static('public'));
@@ -36,6 +39,11 @@ app.use(express.static('public'));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+
+app.m = {};
+fs.readdirSync(__dirname + '/route-middleware').forEach(function (file) {
+  require('./route-middleware/' + file)(app);
+});
 
 fs.readdirSync(__dirname + '/routes').forEach(function (file) {
   require('./routes/' + file)(app);

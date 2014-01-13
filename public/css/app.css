@@ -1,3 +1,25 @@
+#footer {
+  position: fixed;
+  bottom: 0;
+  color: #fff;
+  background-color: #586c7b;
+  width: 96%;
+  padding: 4px 50px;
+}
+#footer #alerts {
+  position: absolute;
+  width: 50%;
+  bottom: 0;
+  right: 110px;
+}
+#footer .foot-wrapper {
+  width: 80%;
+}
+@media (max-width: 690px) {
+  #footer .footer-msg {
+    display: none;
+  }
+}
 #adminPage .nav {
   float: left;
   height: 100%;

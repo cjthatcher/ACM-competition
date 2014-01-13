@@ -25,6 +25,7 @@ angular.module('acm').factory('user',
         if (!data.success) return cb(data.err);
         user.data = data.user;
         $rootScope.$emit('logged-in');
+        cb();
       });
     };
 
@@ -33,6 +34,7 @@ angular.module('acm').factory('user',
         if (!data.success) return cb(data.err);
         user.data = data.user;
         $rootScope.$emit('logged-in');
+        cb();
       });
     };
 

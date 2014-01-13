@@ -13,8 +13,9 @@ This is the testing website for the ACM coding competitions at USU. word.
 5. `gulp`
 
 ###Todo
-- users need a way to update/change their info
-- admin needs to be able to edit users
-- admin needs to be able to create questions
-- Event status is not being saved
-- Admin routes need to be locked down
+ - Users need a way to update/change their info
+ - Admin needs to be able to edit users
+ - Admin needs to be able to create questions
+ - Event status is not being saved
+ - Save creation date with event
+ - feature: startdate, stopdate, duration

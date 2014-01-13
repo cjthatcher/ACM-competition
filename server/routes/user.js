@@ -4,32 +4,22 @@
 var hash = require('password-hash');
 var db = require('../utils/db.js');
 
-module.exports = function(app){
+module.exports = function (app) {
+  app.post('/login',  login);
   app.post('/signup', signup);
-  app.post('/logout', logout);
-  app.get('/user', user);
-  app.post('/login', login);
+  app.post('/logout', app.m.isLoggedIn, logout);
+  app.get('/user',    app.m.isLoggedIn, user);
 };
 
 function login(req, res) {
   db.getUser(req.body.username, function (err, user) {
-    if (err) {
-      res.send({
-        success: false,
-        err: 'No User Found'
-      });
-    return;
-    }
+    if (err) return res.fail('No User Found');
 
-    if (!hash.verify(req.body.password, user.password)) {
-      res.send({
-        success: false,
-        err: 'Incorrect Credentials'
-      });
-      return;
-    }
+    if (!hash.verify(req.body.password, user.password))
+      return res.fail('Incorrect Credentials');
 
     req.session.user = user;
+
     res.send({
       success: true,
       user: user
@@ -37,7 +27,7 @@ function login(req, res) {
   });
 }
 
-function signup(req, res){
+function signup(req, res) {
   var user = {
     username: req.body.username,
     password: hash.generate(req.body.password),
@@ -47,15 +37,11 @@ function signup(req, res){
   };
 
   db.createUser(user, function (err) {
-    if (err){
-      res.send({
-        success: false,
-        err: 'Username Already In Use'
-      });
-      return;
-    }
+    if (err) return res.fail('Username Already In Use');
+
     //session set
     req.session.user = user;
+
     res.send({
       success: true,
       user: user
@@ -63,24 +49,17 @@ function signup(req, res){
   });
 }
 
-function logout(req, res){
-  req.session.destroy(function(){
+function logout(req, res) {
+  req.session.destroy(function () {
     res.send({
       success: true
     });
   });
 }
 
-function user(req, res){
-  var user = req.session.user;
-  if (!user){
-    res.send({
-      success:false
-    });
-  } else {
-    res.send({
-      success:true,
-      user: user
-    });
-  }
+function user(req, res) {
+  res.send({
+    success:true,
+    user: req.session.user
+  });
 }
