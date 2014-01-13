@@ -22,3 +22,9 @@
   float: left;
   width: 547px;
 }
+#adminPage .desc-box {
+  max-width: 250px;
+  word-break: break-word;
+  max-height: 100px;
+  overflow: scroll;
+}
