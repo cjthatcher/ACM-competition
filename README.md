@@ -18,4 +18,4 @@ This is the testing website for the ACM coding competitions at USU. word.
  - Admin needs to be able to create questions
  - Event status is not being saved
  - Save creation date with event
- - feature: startdate, stopdate, duration
+ - feature: startdate, stopdate, duration.
