@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h3>Editing User: {{user.username}}</h3>
+</div>
+
+<div class="modal-body">
+  <form>
+    <label>First Name:</label>
+    <input type="text" ng-model="user.first_name">
+    <label>Last Name:</label>
+    <input type="text" ng-model="user.last_name">
+    <label>Email:</label>
+    <input type="email" ng-model="user.email_address">
+    <label>Admin:</label>
+    <input type="checkbox" ng-model="user.isAdmin">
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+  <button class="btn btn-success" ng-disabled="!user.first_name || !user.last_name || !user.email_address" ng-click="save(user)">Save</button>
+</div>

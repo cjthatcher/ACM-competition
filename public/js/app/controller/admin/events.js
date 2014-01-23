@@ -1,11 +1,11 @@
 /* global angular */
 angular.module('acm').controller('adminEventsCtrl',
-  function ($scope, alerts, user, events) {
+  function ($scope, alerts, user, adminEvents) {
     'use strict';
 
     $scope.user = user;
 
-    events.all(function (err, data) {
+    adminEvents.all(function (err, data) {
       if (err) return alerts.create('error', err);
       $scope.events = data;
     });
@@ -17,7 +17,7 @@ angular.module('acm').controller('adminEventsCtrl',
         available: false
       };
 
-      events.create(event, function (err, id) {
+      adminEvents.create(event, function (err, id) {
         if (err) return alerts.create('error', err);
         event.id = id;
         $scope.events.push(event);
@@ -33,7 +33,7 @@ angular.module('acm').controller('adminEventsCtrl',
     };
 
     $scope.deleteEvent = function (event) {
-      events.remove(event.id, function (err) {
+      adminEvents.remove(event.id, function (err) {
         if (err) return alerts.create('error', err);
         var index = $scope.events.indexOf(event);
         $scope.events.splice(index, 1);

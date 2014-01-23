@@ -1,2 +1,32 @@
 <h1>Users Page</h1>
-{{test}}
+
+<span>Search:</span>
+<input type="text" ng-model="search">
+<button class="btn btn-success pull-right" ng-click="create()">Create</button>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td>Username</td>
+      <td>Password</td>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Email</td>
+      <td>Admin</td>
+      <td>Edit</td>
+      <td>Delete</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in users | filter:search">
+      <td>{{user.username}}</td>
+      <td><button ng-click="resetPass(user)" class="btn">Reset</button></td>
+      <td>{{user.first_name}}</td>
+      <td>{{user.last_name}}</td>
+      <td>{{user.email_address}}</td>
+      <td>{{user.isAdmin && 'Yes' || ''}}</td>
+      <td><button class="btn btn-info" ng-click="edit(user)">Edit</button></td>
+      <td><button class="btn btn-danger" ng-click="remove(user)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>

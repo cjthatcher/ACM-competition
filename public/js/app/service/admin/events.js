@@ -1,10 +1,10 @@
 /* global angular */
-angular.module('acm').factory('events',
+angular.module('acm').factory('adminEvents',
   function ($http) {
     'use strict';
 
     function getEvents(cb) {
-      $http.get('/events').success(function (data) {
+      $http.get('/a/events').success(function (data) {
         if (!data.success) return cb(data.err);
         cb(null, data.events);
       }).error(function (err) {
@@ -13,7 +13,7 @@ angular.module('acm').factory('events',
     }
 
     function createEvent(event, cb) {
-      $http.post('/event', event).success(function (data) {
+      $http.post('/a/event', event).success(function (data) {
         if (!data.success) return cb(data.err);
         cb(null, data.id);
       }).error(function (err) {
@@ -22,7 +22,7 @@ angular.module('acm').factory('events',
     }
 
     function deleteEvent(id, cb) {
-      $http.delete('/event/' + id).success(function (data) {
+      $http.delete('/a/event/' + id).success(function (data) {
         if (!data.success) return cb(data.err);
         cb();
       }).error(function (err) {

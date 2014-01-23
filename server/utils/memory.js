@@ -39,6 +39,7 @@ exports.createUser = function (user, cb) {
 exports.updateUser = function (user, cb) {
   var name = user.username;
   if (!users[name]) return cb('User does not exist');
+  user.password = users[name].password;
   users[name] = user;
   cb();
 };

@@ -29,7 +29,9 @@ exports.updateUser = function (user, cb) {
   var name = user.username;
   _couchGet(cc.db.user, name, function (err, oldUser) {
     if (err) return cb(err);
+    user._id = oldUser._id;
     user._rev = oldUser._rev;
+    user.password = oldUser.password;
     _couchSave(cc.db.user, user, cb);
   }, true);
 };
@@ -98,22 +100,24 @@ function _couchSave(db, obj, cb) {
   }, function (err, resp, json) {
     if (err) return cb(err);
     if (json.error) return cb(json.error + ': ' + json.reason);
-    console.log(json);
     cb(null, json.id);
   });
 }
 
 function _couchDelete(db, id, cb) {
-  var url = couchUrl + db + '/' + id;
-  request({
-    method: 'DELETE',
-    url: url
-  }, function (err, resp, body) {
+  _couchGet(db, id, function (err, obj) {
     if (err) return cb(err);
-    var json = JSON.parse(body);
-    if (json.error) return cb(json.error + ': ' + json.reason);
-    cb();
-  });
+    var url = couchUrl + db + '/' + id + '?rev=' + obj._rev;
+    request({
+      method: 'DELETE',
+      url: url
+    }, function (err, resp, body) {
+      if (err) return cb(err);
+      var json = JSON.parse(body);
+      if (json.error) return cb(json.error + ': ' + json.reason);
+      cb();
+    });
+  }, true);
 }
 
 function _couchGetAll(db, cb) {
@@ -122,7 +126,6 @@ function _couchGetAll(db, cb) {
     if (err) return cb(err);
     var json = JSON.parse(body);
     json = _.map(json.rows, function (item) {
-      console.log(json);
       delete item.doc._id;
       delete item.doc._rev;
       return item.doc;

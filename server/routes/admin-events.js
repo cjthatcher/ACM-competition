@@ -4,9 +4,9 @@
 var db = require('../utils/db.js');
 
 module.exports = function(app){
-  app.get('/events',       app.m.isAdmin, getEvents);
-  app.post('/event',       app.m.isAdmin, createEvent);
-  app.delete('/event/:id', app.m.isAdmin, deleteEvent);
+  app.get('/a/events',       app.m.isAdmin, getEvents);
+  app.post('/a/event',       app.m.isAdmin, createEvent);
+  app.delete('/a/event/:id', app.m.isAdmin, deleteEvent);
 };
 
 function getEvents(req, res) {
