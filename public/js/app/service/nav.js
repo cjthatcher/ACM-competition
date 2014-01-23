@@ -49,6 +49,14 @@ nav = [
     tmpl:  'tmpl/admin/users.html',
     ctrl:  'adminUsersCtrl',
     hidden: true
+  },
+  {
+    label: 'Events',
+    state: 'events',
+    url:   '/events',
+    tmpl:  'tmpl/events.html',
+    ctrl:  'eventsCtrl',
+    loggedIn: true
   }
 ];
 
