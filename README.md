@@ -14,10 +14,10 @@ This is the testing website for the ACM coding competitions at USU. word.
 
 ###Todo
  - Users need a way to update/change their info
- - Admin needs to be able to create users
  - Admin needs to be able to create questions
  - Event status is not being saved
  - Save creation date with event
  - feature: startdate, stopdate, duration
  - password reset stuff
  - on create user, don't set pass, send email instead
+ - kick people to login screen if they aren't logged in

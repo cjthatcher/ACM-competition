@@ -36,6 +36,9 @@ function signup(req, res) {
     email_address: req.body.email
   };
 
+  if (!user.username || !user.password || !user.first_name || !user.last_name || !user.email)
+    return res.fail('Missing Information');
+
   db.createUser(user, function (err) {
     if (err) return res.fail('Username Already In Use');
 
