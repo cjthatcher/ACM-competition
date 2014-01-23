@@ -6,11 +6,21 @@ var _ = require('underscore');
 var db = require('../utils/db.js');
 
 module.exports = function (app) {
+  app.post('/a/user',          app.m.isAdmin, createUser);
   app.get('/a/users',          app.m.isAdmin, getUsers);
   app.post('/a/resetPassword', app.m.isAdmin, resetPassword);
   app.post('/a/updateUser',    app.m.isAdmin, updateUser);
   app.delete('/a/user/:name',  app.m.isAdmin, deleteUser);
 };
+
+function createUser(req, res) {
+  db.createUser(req.body, function (err) {
+    if (err) return res.fail(err);
+    res.send({
+      success: true
+    });
+  });
+}
 
 function getUsers(req, res) {
   db.getUsers(function (err, users) {

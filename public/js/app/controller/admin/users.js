@@ -33,7 +33,11 @@ angular.module('acm').controller('adminUsersCtrl',
         controller: 'mCreateUser'
       }).result.then(function (user) {
         alerts.create('info', 'Creating User: ' + user.username + '...');
-        debugger;
+        adminUsers.create(user, function (err) {
+          if (err) return alerts.create('error', err);
+          alerts.create('success', 'User: ' + user.username + ' has been created!');
+          $scope.users.push(user);
+        });
       });
     };
 

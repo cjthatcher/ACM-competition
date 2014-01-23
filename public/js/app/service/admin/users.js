@@ -12,14 +12,14 @@ angular.module('acm').factory('adminUsers',
       });
     }
 
-    // function createEvent(event, cb) {
-    //   $http.post('/event', event).success(function (data) {
-    //     if (!data.success) return cb(data.err);
-    //     cb(null, data.id);
-    //   }).error(function (err) {
-    //     cb(err + ': Are you logged In?');
-    //   });
-    // }
+    function createUser(user, cb) {
+      $http.post('/a/user', user).success(function (data) {
+        if (!data.success) return cb(data.err);
+        cb(null, data.id);
+      }).error(function (err) {
+        cb(err + ': Are you logged In?');
+      });
+    }
 
     function deleteUser(name, cb) {
       $http.delete('/a/user/' + name).success(function (data) {
@@ -50,7 +50,7 @@ angular.module('acm').factory('adminUsers',
 
     return {
       all: getUsers,
-      // create: createEvent,
+      create: createUser,
       remove: deleteUser,
       update: updateUser,
       resetPass: resetPassword
