@@ -1,0 +1,17 @@
+<form>
+  <legend>Login</legend>
+
+  <label>Email:</label>
+  <div><input ng-model="email" type="email" autofocus></div>
+
+  <label>Password:</label>
+  <div><input ng-model="password" type="password"></div>
+
+  <label class="checkbox">
+    <input ng-model="rememberMe" type="checkbox"> Remember me
+  </label>
+
+  <input ng-click="login(email, password, rememberMe)" ng-disabled="!email || !password" type="submit" value="Login" class="btn btn-success">
+</form>
+
+<pre>{{loginObj | json}}</pre>

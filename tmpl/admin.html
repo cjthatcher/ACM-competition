@@ -1,0 +1,8 @@
+<nav class="navbar navbar-inverse">
+  <ul class="nav nav-pills nav-stacked">
+    <li ng-repeat="item in nav">
+      <a ng-click="goTo(item.state)">{{item.label}}</a>
+    </li>
+  </ul>
+</nav>
+<div ui-view></div>

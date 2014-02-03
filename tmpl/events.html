@@ -1,0 +1,6 @@
+<h1>Events</h1>
+
+<div class="event" ng-repeat="(key, event) in events" ng-click="goToEvent(key)">
+  <h3>{{event.name}}</h3>
+  <span>{{event.description}}</span>
+</div>

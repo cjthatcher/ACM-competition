@@ -1,0 +1,35 @@
+<button class="btn" ng-click="back()">Back</button>
+
+<div><label>Name:</label></div>
+<div><input type="text" ng-model="event.name" ng-change="updateEvent('name', event.name)"></div>
+
+<label>Description:</label>
+<div><textarea cols="30" rows="10" ng-model="event.description" ng-change="updateEvent('description', event.description)"></textarea></div>
+
+<label>Availability Override:</label>
+<button ng-show="event.available" class="btn btn-success" disabled>Open</button>
+<button ng-show="!event.available" class="btn btn-danger" disabled>Closed</button>
+<button class="btn" ng-click="updateEvent('available', !event.available)">Toggle</button>
+
+<div><label>Questions:</label></div>
+
+<table class="table">
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Input</th>
+    <th>Output</th>
+    <th>Delete?</th>
+  </tr>
+  <tr ng-repeat="(key, question) in questions">
+    <td>{{$index + 1}}.</td>
+    <td><input type="text" ng-model="question.name" ng-change="saveQuestion(key, 'name', question.name)"></td>
+    <td><textarea ng-model="question.description" ng-change="saveQuestion(key, 'description', question.description)"></textarea></td>
+    <td><input type="text" ng-model="question.input" ng-change="saveQuestion(key, 'input', question.input)"></td>
+    <td><input type="text" ng-model="answers[key]" ng-change="saveAnswer(key, answers[key])"></td>
+    <td><button class="btn btn-danger" ng-click="deleteQuestion(key)">Delete</button></td>
+  </tr>
+</table>
+
+<button class="btn btn-info" ng-click="newQuestion()">Add New</button>

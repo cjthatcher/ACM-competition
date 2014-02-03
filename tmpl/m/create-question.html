@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h3>Creating Event</h3>
+</div>
+
+<div class="modal-body">
+  <form>
+    <label>Name:</label>
+    <div><input type="text" ng-model="question.name"></div>
+
+    <label>Description:</label>
+    <div><textarea ng-model="question.description"></textarea></div>
+
+    <label>Input:</label>
+    <div><input type="text" ng-model="question.input"></div>
+
+    <label>Output:</label>
+    <div><input type="text" ng-model="output"></div>
+
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+  <button class="btn btn-success" ng-disabled="!question.name || !question.description || !question.input || !output" ng-click="create(question, output)">Create</button>
+</div>

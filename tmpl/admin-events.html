@@ -1,0 +1,28 @@
+<button class="btn btn-info" ng-click="createEvent()">Create</button>
+
+<h2>All Events</h2>
+<span ng-show="!events.$getIndex().length">No events found.</span>
+
+<table class="table" ng-show="events.$getIndex().length">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Availability</th>
+    <th>Toggle</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tr ng-repeat="(key, event) in events">
+    <td>{{event.name}}</td>
+    <td>
+      <div class="desc-box">{{event.description}}</div>
+    </td>
+    <td>
+      <button ng-show="event.available" class="btn btn-success" disabled>Open</button>
+      <button ng-show="!event.available" class="btn btn-danger" disabled>Closed</button>
+    </td>
+    <td><button class="btn" ng-click="toggleEvent(key, event.available)">Toggle</button></td>
+    <td><button class="btn btn-info" ng-click="editEvent(key)">Edit</button></td>
+    <th><button class="btn btn-danger" ng-click="deleteEvent(key)">Delete</button></th>
+  </tr>
+</table>

@@ -1,0 +1,17 @@
+<button class="btn" ng-click="back()">Back</button>
+
+<h1>{{event.name}}</h1>
+<span>{{event.description}}</span>
+
+<nav class="navbar navbar-inverse">
+  <ul class="nav nav-pills nav-stacked">
+    <li ng-repeat="(key, q) in questions">
+      <a ng-click="goToQuestion(key)">{{q.name}}</a>
+    </li>
+  </ul>
+</nav>
+
+<div ui-view>
+  <span ng-show="questions.$getIndex().length">Click on a question to get started.</span>
+  <span ng-show="!questions.$getIndex().length">Looks like the competition hasn't started yet.</span>
+</div>

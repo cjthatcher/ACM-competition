@@ -1,0 +1,39 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  color: #fff;
+  background-color: black;
+  width: 100%;
+  padding: 4px 50px;
+}
+
+#footer #alerts {
+  position: absolute;
+  width: 50%;
+  bottom: 0;
+  right: 110px;
+}
+
+#footer .foot-wrapper {
+  width: 80%;
+}
+
+.event {
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.event:hover {
+  background-color: gray;
+}
+
+/*
+pre {
+  display: none;
+}
+*/

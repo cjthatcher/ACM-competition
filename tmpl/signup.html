@@ -1,0 +1,13 @@
+<form>
+  <legend>Signup</legend>
+
+  <label>Email:</label>
+  <div><input ng-model="email" type="email" autofocus></div>
+
+  <label>Password:</label>
+  <div><input ng-model="pass" type="password"></div>
+
+  <input ng-click="signup(email, pass)" ng-disabled="!email || !pass" type="submit" value="Sign Up" class="btn btn-success">
+</form>
+
+<button class="btn btn-info" ng-click="github()">Github</button>
