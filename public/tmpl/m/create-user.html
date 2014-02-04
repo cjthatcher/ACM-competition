@@ -1,25 +1,25 @@
 <div class="modal-header">
-  <h3>Creating User: {{newUser.username}}</h3>
+  <h3>Creating User: {{nUser.name}}</h3>
 </div>
 
 <div class="modal-body">
   <form>
     <label>Username:</label>
-    <input type="text" ng-model="newUser.username">
+    <input type="text" ng-model="nUser.name">
     <label>Password:</label>
-    <input type="password" ng-model="newUser.password">
+    <input type="password" ng-model="nUser.pass">
     <label>First Name:</label>
-    <input type="text" ng-model="newUser.first_name">
+    <input type="text" ng-model="nUser.first">
     <label>Last Name:</label>
-    <input type="text" ng-model="newUser.last_name">
+    <input type="text" ng-model="nUser.last">
     <label>Email:</label>
-    <input type="email" ng-model="newUser.email_address">
+    <input type="email" ng-model="nUser.email">
     <label>Admin:</label>
-    <input type="checkbox" ng-model="newUser.isAdmin">
+    <input type="checkbox" ng-model="nUser.isAdmin">
   </form>
 </div>
 
 <div class="modal-footer">
   <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
-  <button class="btn btn-success" ng-disabled="!newUser.username || !newUser.password || !newUser.first_name || !newUser.last_name || !newUser.email_address" ng-click="save(newUser)">Save</button>
+  <button class="btn btn-success" ng-disabled="!nUser.name || !nUser.pass || !nUser.first || !nUser.last || !nUser.email" ng-click="save(nUser)">Save</button>
 </div>

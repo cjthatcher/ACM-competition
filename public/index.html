@@ -6,9 +6,7 @@
 </head>
 <body>
   <div header></div>
-  <div class="container">
-    <div ui-view id="view"></div>
-  </div>
+  <div ui-view id="view"></div>
   <div id="footer" footer></div>
 
   <!-- Load Libraries -->
@@ -20,26 +18,32 @@
   <!-- Load Module -->
   <script src="js/module.js"></script>
 
-  <!-- Load any controllers, directives, services, or filters -->
   <!-- Controllers -->
   <script src="js/app/controller/header.js"></script>
   <script src="js/app/controller/footer.js"></script>
 
-  <script src="js/app/controller/main.js"></script>
+  <script src="js/app/controller/index.js"></script>
+  <script src="js/app/controller/events.js"></script>
+  <script src="js/app/controller/event.js"></script>
+  <script src="js/app/controller/question.js"></script>
   <script src="js/app/controller/signup.js"></script>
   <script src="js/app/controller/login.js"></script>
 
   <script src="js/app/controller/admin/base.js"></script>
   <script src="js/app/controller/admin/events.js"></script>
+  <script src="js/app/controller/admin/event.js"></script>
   <script src="js/app/controller/admin/users.js"></script>
 
   <script src="js/app/controller/m/edit-user.js"></script>
   <script src="js/app/controller/m/create-user.js"></script>
+  <script src="js/app/controller/m/event.js"></script>
+  <script src="js/app/controller/m/question.js"></script>
 
   <!-- Services -->
   <script src="js/app/service/nav.js"></script>
   <script src="js/app/service/user.js"></script>
   <script src="js/app/service/alerts.js"></script>
+  <script src="js/app/service/events.js"></script>
 
   <script src="js/app/service/admin/events.js"></script>
   <script src="js/app/service/admin/users.js"></script>
@@ -52,5 +56,6 @@
 
   <!-- Launch the App -->
   <script src="js/main.js"></script>
+
 </body>
 </html>

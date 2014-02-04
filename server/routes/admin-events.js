@@ -5,7 +5,9 @@ var db = require('../utils/db.js');
 
 module.exports = function(app){
   app.get('/a/events',       app.m.isAdmin, getEvents);
+  app.get('/a/event/:id',    app.m.isAdmin, getEvent);
   app.post('/a/event',       app.m.isAdmin, createEvent);
+  app.post('/a/updateEvent', app.m.isAdmin, updateEvent);
   app.delete('/a/event/:id', app.m.isAdmin, deleteEvent);
 };
 
@@ -20,10 +22,21 @@ function getEvents(req, res) {
   });
 }
 
+function getEvent(req, res) {
+  db.getEvent(req.params.id, function (err, event) {
+    if (err) return res.fail(err);
+
+    res.send({
+      success: true,
+      event: event
+    });
+  });
+}
+
 function createEvent(req, res) {
   var event = {
     name: req.body.name,
-    description: req.body.description,
+    desc: req.body.desc,
     available: false,
     questions: []
   };
@@ -34,6 +47,16 @@ function createEvent(req, res) {
     res.send({
       success: true,
       id: id
+    });
+  });
+}
+
+function updateEvent(req, res) {
+  db.updateEvent(req.body, function (err) {
+    if (err) return res.fail(err);
+
+    res.send({
+      success: true
     });
   });
 }

@@ -1,0 +1,22 @@
+<div class="title">{{question.name}}</div>
+
+<div>- {{question.subtitle}} -</div>
+
+<pre class="no-pre indent-in">{{question.desc}}</pre>
+
+<div style="font-weight:bold">Input:</div>
+<pre class="no-pre indent-in">{{question.input}}</pre>
+
+<div style="font-weight:bold">Output:</div>
+<pre class="no-pre indent-in">{{question.output}}</pre>
+
+
+<div style="font-weight:bold">Example Input:</div>
+<pre class="no-pre indent-in">{{question.eInput}}</pre>
+
+<div style="font-weight:bold">Example Output:</div>
+<pre class="no-pre indent-in">{{question.eOutput}}</pre>
+
+<button class="btn" ng-click="downloadInput()">Get Input</button>
+
+<button class="btn">Submit Answer</button>

@@ -1,0 +1,30 @@
+<button class="btn btn-warning" ng-click="editInfo('desc')">Edit</button>
+<div class="title">{{event.name}}</div>
+<div>{{event.desc}}</div>
+<div>
+  <button ng-show="event.available" class="btn btn-success" disabled>Open</button>
+  <button ng-show="!event.available" class="btn btn-danger" disabled>Closed</button>
+</div>
+
+<button class="btn btn-info pull-right" ng-click="createQuestion()">Create</button>
+<div class="title">All Questions</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Subtitle</th>
+      <th>Description</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="question in event.questions">
+      <td>{{question.name}}</td>
+      <td>{{question.subtitle}}</td>
+      <td>{{question.desc}}</td>
+      <td><button class="btn btn-warning" ng-click="editQuestion(question, $index)">Edit</button></td>
+      <td><button class="btn btn-danger" ng-click="deleteQuestion($index)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>

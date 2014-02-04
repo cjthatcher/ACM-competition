@@ -3,10 +3,10 @@
 
 // -- Initialization -----------------------------------------------------------
 
-var request = require('request'),
-          _ = require('underscore');
-
-var cc = require('config').couchConfig;
+var request = require('request');
+var       _ = require('underscore');
+var    uuid = require('node-uuid');
+var      cc = require('config').couchConfig;
 
 var couchUrl = 'http://' + cc.host + ':' + cc.port + '/';
 
@@ -21,17 +21,17 @@ exports.getUser = function (name, cb) {
 };
 
 exports.createUser = function (user, cb) {
-  user._id = user.username;
+  user._id = user.name;
   _couchSave(cc.db.user, user, cb);
 };
 
 exports.updateUser = function (user, cb) {
-  var name = user.username;
+  var name = user.name;
   _couchGet(cc.db.user, name, function (err, oldUser) {
     if (err) return cb(err);
     user._id = oldUser._id;
     user._rev = oldUser._rev;
-    user.password = oldUser.password;
+    user.pass = oldUser.pass;
     _couchSave(cc.db.user, user, cb);
   }, true);
 };
@@ -57,6 +57,9 @@ exports.getEvent = function (id, cb) {
 };
 
 exports.createEvent = function (event, cb) {
+    var id = uuid.v1();
+    event.id = id;
+    event._id = id;
   _couchSave(cc.db.event, event, cb);
 };
 
@@ -64,6 +67,7 @@ exports.updateEvent = function (event, cb) {
   var id = event.id;
   _couchGet(cc.db.event, id, function (err, oldEvent) {
     if (err) return cb(err);
+    event._id = oldEvent._id;
     event._rev = oldEvent._rev;
     _couchSave(cc.db.event, event, cb);
   }, true);

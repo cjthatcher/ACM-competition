@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h1>Events</h1>
+</div>
+
+<div class="event" ng-class="{available:event.available}" ng-click="goToEvent(event.id)" ng-repeat="event in events">
+  <div class="title">{{event.name}}</div>
+  <pre class="no-pre">{{event.desc}}</pre>
+</div>

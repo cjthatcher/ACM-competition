@@ -1,8 +1,7 @@
 /* jshint node:true */
 'use strict';
 
-var _ = require('underscore');
-
+var  _ = require('underscore');
 var db = require('../utils/db.js');
 
 module.exports = function (app) {
@@ -26,7 +25,7 @@ function getUsers(req, res) {
   db.getUsers(function (err, users) {
     if (err) return res.fail(err);
     _.each(users, function (user) {
-      delete user.password;
+      delete user.pass;
     });
 
     res.send({

@@ -43,8 +43,8 @@ function createAdmin() {
   var msg = 'Create Admin: ';
   var url = couchUrl + cc.db.user + '/admin';
   var obj = {
-    username: 'admin',
-    password: hash.generate('admin'),
+    name: 'admin',
+    pass: hash.generate('admin'),
     isAdmin: true
   };
   request({

@@ -2,11 +2,10 @@
 var nav;
 nav = [
   {
-    label: 'Main',
     state: 'index',
     url:   '/',
-    tmpl:  'tmpl/main.html',
-    ctrl:  'mainCtrl',
+    tmpl:  'tmpl/index.html',
+    ctrl:  'indexCtrl',
     hidden: true
   },
   {
@@ -36,18 +35,23 @@ nav = [
   {
     label: 'Admin',
     state: 'admin.events',
-    v_url: '/events',
-    url:   '/admin/events',
+    url:   '/events',
     tmpl:  'tmpl/admin/events.html',
     ctrl:  'adminEventsCtrl',
     admin: true
   },
   {
     state: 'admin.users',
-    v_url: '/users',
-    url:   '/admin/users',
+    url:   '/users',
     tmpl:  'tmpl/admin/users.html',
     ctrl:  'adminUsersCtrl',
+    hidden: true
+  },
+  {
+    state: 'admin.event',
+    url:   '/event/:id',
+    tmpl:  'tmpl/admin/event.html',
+    ctrl:  'adminEventCtrl',
     hidden: true
   },
   {
@@ -57,11 +61,25 @@ nav = [
     tmpl:  'tmpl/events.html',
     ctrl:  'eventsCtrl',
     loggedIn: true
+  },
+  {
+    state: 'event',
+    url:   '/event/:id',
+    tmpl:  'tmpl/event.html',
+    ctrl:  'eventCtrl',
+    hidden: true
+  },
+  {
+    state: 'event.question',
+    url:   '/q/:index',
+    tmpl:  'tmpl/question.html',
+    ctrl:  'questionCtrl',
+    hidden: true
   }
 ];
 
 angular.module('acm').factory('nav',
-  function() {
+  function () {
     'use strict';
     return nav;
   }

@@ -1,0 +1,20 @@
+<div id="eventPage">
+  <ul class="nav">
+    <li ng-repeat="question in event.questions">
+      <a class="nav-item" ng-click="openQuestion($index)">
+        <div>{{question.name}}</div>
+        <div>{{question.subtitle}}</div>
+      </a>
+    </li>
+    <li>
+      <a class="nav-item">LEADERBOARD</a>
+    </li>
+  </ul>
+
+  <div class="title">{{event.name}}</div>
+  <hr>
+  <div class="subview" ui-view>
+    <div ng-show="event.available">Choose a question on the side to get started.</div>
+    <div ng-show="!event.available">Looks like the competition hasn't started yet.</div>
+  </div>
+</div>

@@ -1,7 +1,8 @@
-/* global angular*/
+/* global angular */
 angular.module('acm').factory('user',
   function ($http, $rootScope, $window) {
     'use strict';
+
     var user = {};
 
     user.check = function () {
@@ -17,8 +18,8 @@ angular.module('acm').factory('user',
 
     user.login = function(name, pass, cb) {
       var userObj = {
-        username: name,
-        password: pass
+        name: name,
+        pass: pass
       };
 
       $http.post('/login', userObj).success(function (data) {

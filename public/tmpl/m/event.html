@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <h3>{{type.title}} Event</h3>
+</div>
+
+<div class="modal-body">
+  <form>
+    <label>Name:</label>
+    <input type="text" ng-model="nEvent.name">
+
+    <label>Description:</label>
+    <textarea cols="30" rows="10" ng-model="nEvent.desc"></textarea>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="dismiss()">Cancel</button>
+  <button class="btn btn-success" ng-disabled="!nEvent.name || !nEvent.desc" ng-click="close(nEvent)">{{type.btn}}</button>
+</div>

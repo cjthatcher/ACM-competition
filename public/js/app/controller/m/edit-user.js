@@ -2,6 +2,7 @@
 angular.module('acm').controller('mEditUser',
   function ($scope, $modalInstance, curUser) {
     'use strict';
+
     $scope.user = curUser;
 
     $scope.cancel = function () {

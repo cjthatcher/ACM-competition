@@ -21,6 +21,6 @@ module.exports = {
       event: 'events'
     }
   },
-  strategy: 'memory',
+  strategy: 'couch',
   port: 3000
 };

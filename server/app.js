@@ -1,15 +1,10 @@
-
-/**
- * Module dependencies.
- */
-
-/*jshint node:true*/
+/* jshint node:true */
 'use strict';
 
+var    http = require('http');
+var      fs = require('fs');
 var express = require('express');
-var http = require('http');
-var fs = require('fs');
-var config = require('config');
+var  config = require('config');
 
 var sessOptions = config.sessOptions;
 

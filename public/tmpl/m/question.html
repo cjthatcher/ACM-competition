@@ -1,0 +1,43 @@
+<div class="modal-header">
+  <h3>{{type.title}} Question</h3>
+</div>
+
+<div class="modal-body">
+  <form>
+    <div class="q-input">
+      <label>Name:</label>
+      <input type="text" ng-model="nQuestion.name">
+    </div>
+
+    <div class="q-input pull-right">
+      <label>Subtitle:</label>
+      <input type="text" ng-model="nQuestion.subtitle">
+    </div>
+
+    <label>Description:</label>
+    <textarea class="q-area" ng-model="nQuestion.desc"></textarea>
+
+    <label>Input:</label>
+    <textarea class="q-area" ng-model="nQuestion.input"></textarea>
+
+    <label>Output:</label>
+    <textarea class="q-area" ng-model="nQuestion.output"></textarea>
+
+    <label>Example Input:</label>
+    <textarea class="q-area" ng-model="nQuestion.eInput"></textarea>
+
+    <label>Example Output:</label>
+    <textarea class="q-area" ng-model="nQuestion.eOutput"></textarea>
+
+    <label>Actual Input:</label>
+    <textarea class="q-area" ng-model="nQuestion.aInput"></textarea>
+
+    <label>Expected Output:</label>
+    <textarea class="q-area" ng-model="nQuestion.aOutput"></textarea>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="dismiss()">Cancel</button>
+  <button class="btn btn-success" ng-disabled="!nQuestion.name || !nQuestion.subtitle || !nQuestion.desc || !nQuestion.input || !nQuestion.output || !nQuestion.eInput || !nQuestion.eOutput || !nQuestion.aInput || !nQuestion.aOutput" ng-click="close(nQuestion)">{{type.btn}}</button>
+</div>

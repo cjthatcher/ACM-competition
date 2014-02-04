@@ -1,9 +1,11 @@
-<div class="navbar navbar-static-top">
+<div class="navbar navbar-inverse navbar-static-top">
   <div class="navbar-inner">
     <div class="container">
       <a class="brand" href="#">ACM</a>
       <ul class="nav">
-        <li ng-repeat="item in nav | filter:security" ng-class="{active:item.state===state.current.name}"><a href="/#{{item.url}}">{{item.label}}</a></li>
+        <li ng-repeat="item in nav | filter:security">
+          <a ng-click="goTo(item.state)">{{item.label}}</a>
+        </li>
       </ul>
       <ul ng-show="user.data" class="nav pull-right">
         <li><a href="#" ng-click="logout()">Logout</a></li>

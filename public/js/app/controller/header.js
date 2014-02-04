@@ -2,11 +2,14 @@
 angular.module('acm').controller('headerCtrl',
   function ($scope, $state, nav, user) {
     'use strict';
+
     $scope.nav = nav;
     $scope.state = $state;
     $scope.user = user;
 
-    user.check();
+    $scope.goTo = function (state) {
+      $state.transitionTo(state);
+    };
 
     $scope.security = function (item) {
       if (item.hidden) return false;
@@ -21,6 +24,8 @@ angular.module('acm').controller('headerCtrl',
     $scope.logout = function () {
       user.logout();
     };
+
+    user.check();
   }
 );
 

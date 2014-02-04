@@ -1,44 +1,44 @@
 <form class="form-horizontal" style="margin-top: 25px">
   <legend>Signup</legend>
   <div class="control-group">
-    <label class="control-label" for="username">Username:</label>
+    <label class="control-label">Username:</label>
     <div class="controls">
-      <input ng-model="username" type="text" id="username" autofocus>
+      <input ng-model="nUser.name" type="text" autofocus>
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="password">Password:</label>
+    <label class="control-label">Password:</label>
     <div class="controls">
-      <input ng-model="password" type="password" id="password">
+      <input ng-model="nUser.pass" type="password">
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="confirmPassword">Confirm Password:</label>
+    <label class="control-label">Confirm Password:</label>
     <div class="controls">
-      <input ng-model="confirmPassword" type="password" id="confirmPassword">
+      <input ng-model="pass" type="password">
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="firstName">First Name:</label>
+    <label class="control-label">First Name:</label>
     <div class="controls">
-      <input ng-model="firstName" type="text" id="firstName">
+      <input ng-model="nUser.first" type="text">
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="lastName">Last Name:</label>
+    <label class="control-label">Last Name:</label>
     <div class="controls">
-      <input ng-model="lastName" type="text" id="lastName">
+      <input ng-model="nUser.last" type="text">
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="email">Email:</label>
+    <label class="control-label">Email:</label>
     <div class="controls">
-      <input ng-model="email" type="email" id="email">
+      <input ng-model="nUser.email" type="email">
     </div>
   </div>
   <div class="control-group">
     <div class="controls">
-      <input ng-click="signup()" ng-disabled="confirmPassword != password || !username || !lastName || !email || !firstName || !password " type="submit" value="Sign Up" class="btn btn-success">
+      <input ng-click="signup(nUser)" ng-disabled="nUser.pass != pass || !nUser.name || !nUser.pass || !nUser.email || !nUser.first || !nUser.last" type="submit" value="Sign Up" class="btn btn-success">
     </div>
   </div>
 </form>
