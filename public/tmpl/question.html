@@ -2,21 +2,39 @@
 
 <div>- {{question.subtitle}} -</div>
 
-<pre class="no-pre indent-in">{{question.desc}}</pre>
+<div class="pre indent-in">{{question.desc}}</div>
 
-<div style="font-weight:bold">Input:</div>
-<pre class="no-pre indent-in">{{question.input}}</pre>
+<div class="bold-label">Input:</div>
+<div class="pre indent-in">{{question.input}}</div>
 
-<div style="font-weight:bold">Output:</div>
-<pre class="no-pre indent-in">{{question.output}}</pre>
+<div class="bold-label">Output:</div>
+<div class="pre indent-in">{{question.output}}</div>
 
 
-<div style="font-weight:bold">Example Input:</div>
-<pre class="no-pre indent-in">{{question.eInput}}</pre>
+<div class="bold-label">Example Input:</div>
+<div class="pre indent-in">{{question.eInput}}</div>
 
-<div style="font-weight:bold">Example Output:</div>
-<pre class="no-pre indent-in">{{question.eOutput}}</pre>
+<div class="bold-label">Example Output:</div>
+<div class="pre indent-in">{{question.eOutput}}</div>
 
-<button class="btn" ng-click="downloadInput()">Get Input</button>
+<div ng-show="!question.solved">
+  <form>
+    <button class="btn" ng-click="downloadInput()">Get Input</button>
 
-<button class="btn">Submit Answer</button>
+    <div>
+      <span>Output:</span>
+      <input type="file" ng-file-select="setFile('out', $files)">
+    </div>
+
+    <div>
+      <span>Source Code:</span>
+      <input type="file" ng-file-select="setFile('src', $files)">
+    </div>
+
+    <button class="btn" ng-click="submitAnswer()">Submit Answer</button>
+  </form>
+</div>
+
+<div ng-show="question.solved" class="alert alert-success">
+  Congrats!! You've already solved this one!!
+</div>

@@ -1,5 +1,5 @@
 /* global angular, nav */
-angular.module('acm', ['ui.router', 'ui.bootstrap']).config(
+angular.module('acm', ['ui.router', 'ui.bootstrap', 'angularFileUpload']).config(
   function ($stateProvider, $urlRouterProvider) {
     'use strict';
 
@@ -13,6 +13,5 @@ angular.module('acm', ['ui.router', 'ui.bootstrap']).config(
     }
 
     $urlRouterProvider.otherwise('/');
-    /* if page not found, send to index */
   }
 );

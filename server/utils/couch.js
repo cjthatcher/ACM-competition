@@ -77,6 +77,50 @@ exports.deleteEvent = function (id, cb) {
   _couchDelete(cc.db.event, id, cb);
 };
 
+// -- Results Methods ----------------------------------------------------------
+
+exports.saveResult = function (result, cb) {
+  exports.getScores(result.event, function (err, scores) {
+    if (err) return cb(err);
+
+    var wasFirst = true;
+    var alreadySubmitted = false;
+
+    _.each(scores, function (score) {
+      if (score.question === result.question) {
+        wasFirst = false;
+
+        if (score.user === result.user) {
+          alreadySubmitted = true;
+        }
+      }
+    });
+
+    if (alreadySubmitted) return cb('Already Answered that Question');
+
+    _couchSave(cc.db.results, result, function (err) {
+      if (err) return cb(err);
+      cb(null, wasFirst);
+    });
+  });
+};
+
+exports.getScores = function (event, cb) {
+  exports.getResults(event, function (err, scores) {
+    if (err) return cb(err);
+    var arr = _.where(scores, { success: true });
+    cb(null, arr);
+  });
+};
+
+exports.getResults = function (event, cb) {
+  _couchGetAll(cc.db.results, function (err, scores) {
+    if (err) return cb(err);
+    var arr = _.where(scores, { event: event });
+    cb(null, arr);
+  });
+};
+
 // -- Private Functions --------------------------------------------------------
 
 function _couchGet(db, id, cb, saveRev) {

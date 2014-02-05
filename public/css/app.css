@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 0;
   color: #fff;
-  background-color: #586c7b;
+  background-color: #111;
   width: 96%;
   padding: 4px 50px;
 }
@@ -64,13 +64,16 @@
 #eventPage .nav {
   float: left;
   height: 100%;
-  background-color: #535353;
+  background-color: #111;
   padding: 10px 0;
 }
 #eventPage .nav-item {
   padding: 10px;
-  width: 100px;
+  max-width: 200px;
   color: #1bdbff;
+}
+#eventPage .nav-item.solved {
+  color: #008000;
 }
 #eventPage .nav-item:hover {
   color: #535353;
@@ -86,4 +89,27 @@
 .no-pre {
   background-color: inherit;
   border: none;
+}
+.pre {
+  white-space: pre-wrap;
+}
+.bold-label {
+  font-weight: bold;
+}
+#view {
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+.navbar-inner {
+  border: none;
+}
+.navbar-static-top {
+  position: fixed;
+  width: 100%;
+}
+#eventPage .nav {
+  position: fixed;
+}
+.test {
+  margin-left: 150px;
 }

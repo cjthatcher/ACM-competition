@@ -9,7 +9,8 @@ module.exports = {
     port: 5984,
     db: {
       user: 'acm_users',
-      event: 'acm_events'
+      event: 'acm_events',
+      results: 'acm_results'
     }
   },
   mongoConfig: {

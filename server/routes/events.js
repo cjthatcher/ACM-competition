@@ -5,9 +5,8 @@ var  _ = require('underscore');
 var db = require('../utils/db.js');
 
 module.exports = function (app) {
-  app.get('/allEvents',      app.m.isLoggedIn, getEvents);
-  app.get('/event/:id',      app.m.isLoggedIn, getEvent);
-  app.get('/inp/:id/:index/:name', app.m.isLoggedIn, downloadInput);
+  app.get('/allEvents', app.m.isLoggedIn, getEvents);
+  app.get('/event/:id', app.m.isLoggedIn, getEvent);
 };
 
 function getEvents(req, res) {
@@ -26,34 +25,33 @@ function getEvents(req, res) {
 }
 
 function getEvent(req, res) {
-  db.getEvent(req.params.id, function (err, event) {
-    if (err) return res.fail(err);
+  var id = req.params.id;
+  var user = req.session.user;
 
-    if (event.available || req.session.user.isAdmin) {
-      event.questions = _.map(event.questions, function (q) {
-        return _.omit(q, 'aInput', 'aOutput');
+  db.getScores(id, function (err, scores) {
+    if (err) return res.fail(err);
+    scores = _.where(scores, { user: user.name });
+
+    db.getEvent(id, function (err, event) {
+      if (err) return res.fail(err);
+
+      if (event.available || user.isAdmin) {
+        event.questions = _.map(event.questions, function (q) {
+          return _.omit(q, 'aInput', 'aOutput');
+        });
+
+        _.each(event.questions, function (question, index) {
+          if (_.findWhere(scores, { question: '' + index }))
+            question.solved = true;
+        });
+      } else {
+        event = _.omit(event, 'questions');
+      }
+
+      res.send({
+        success: true,
+        event: event
       });
-    } else {
-      event = _.omit(event, 'questions');
-    }
-
-    res.send({
-      success: true,
-      event: event
     });
-  });
-}
-
-function downloadInput(req, res) {
-  db.getEvent(req.params.id, function (err, event) {
-    if (err) return res.fail(err);
-
-    if (event.available || req.session.user.isAdmin) {
-      res.setHeader('Content-Type', 'text/plain');
-      res.setHeader('Content-Disposition', 'attachment');
-      res.send(event.questions[req.params.index].aInput);
-    } else {
-      res.forbidden();
-    }
   });
 }
