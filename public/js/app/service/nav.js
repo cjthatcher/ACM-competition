@@ -75,6 +75,13 @@ nav = [
     tmpl:  'tmpl/question.html',
     ctrl:  'questionCtrl',
     hidden: true
+  },
+  {
+    state: 'event.leaderboard',
+    url:   '/high-scores',
+    tmpl:  'tmpl/leaderboard.html',
+    ctrl:  'leaderboardCtrl',
+    hidden: true
   }
 ];
 

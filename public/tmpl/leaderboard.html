@@ -1,0 +1,48 @@
+<div class="title">Leaderboard</div>
+
+<tabset>
+  <tab heading="Overall">
+    <div ng-show="!overall.length">No one's solved anything yet!</div>
+
+    <table class="table table-striped" ng-show="overall.length">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Points</th>
+          <th>Current Time</th>
+          <th># Solved</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in overall">
+          <td>{{user.name}}</td>
+          <td>{{user.points}}</td>
+          <td>{{user.time | date:'h:mm:ss a'}}</td>
+          <td>{{user.solved}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </tab>
+
+  <tab heading="By Question">
+    <div ng-show="!questions.length">No one's solved anything yet!</div>
+    <div ng-repeat="q in questions">
+      <h3>{{q.title}}</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="u in q.users">
+            <td>{{u.user}}</td>
+            <td>{{u.time | date:'h:mm:ss a'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </tab>
+</tabset>
+

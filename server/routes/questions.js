@@ -2,7 +2,7 @@
 'use strict';
 
 var fs = require('fs');
-// var  _ = require('underscore');
+var  _ = require('underscore');
 var db = require('../utils/db.js');
 
 module.exports = function (app) {
@@ -47,11 +47,25 @@ function uploadFiles(req, res) {
 function getScores(req, res) {
   var id = req.params.id;
 
-  db.getScores(id, function (err, scores) {
+  db.getEvent(id, function (err, event) {
     if (err) return res.fail(err);
-    res.send({
-      success: true,
-      scores: scores
+
+    db.getScores(id, function (err, scores) {
+      if (err) return res.fail(err);
+
+      _.each(scores, function (score) {
+        var q = event.questions[score.question];
+        delete score.answer;
+        delete score.source;
+        delete score.success;
+        delete score.event;
+        score.questionLabel = q.name + ' - ' + q.subtitle;
+      });
+
+      res.send({
+        success: true,
+        scores: scores
+      });
     });
   });
 }

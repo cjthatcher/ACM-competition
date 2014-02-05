@@ -18,5 +18,11 @@ angular.module('acm').controller('eventCtrl',
         index: index
       });
     };
+
+    $scope.openHighScores = function () {
+      $state.transitionTo('event.leaderboard', {
+        id: $stateParams.id
+      });
+    };
   }
 );

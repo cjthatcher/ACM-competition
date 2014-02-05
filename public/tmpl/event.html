@@ -1,5 +1,5 @@
 <div id="eventPage">
-  <ul class="nav">
+  <ul class="nav cust-nav">
     <li ng-repeat="question in event.questions">
       <a class="nav-item" ng-class="{solved:question.solved}" ng-click="openQuestion($index)">
         <div>{{question.name}}</div>
@@ -7,7 +7,7 @@
       </a>
     </li>
     <li>
-      <a class="nav-item">LEADERBOARD</a>
+      <a class="nav-item" ng-click="openHighScores()">LEADERBOARD</a>
     </li>
   </ul>
 

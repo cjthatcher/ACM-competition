@@ -61,11 +61,12 @@
 #eventPage .subview {
   margin-left: 150px;
 }
-#eventPage .nav {
+#eventPage .cust-nav {
   float: left;
   height: 100%;
   background-color: #111;
   padding: 10px 0;
+  position: fixed;
 }
 #eventPage .nav-item {
   padding: 10px;
@@ -106,9 +107,6 @@
 .navbar-static-top {
   position: fixed;
   width: 100%;
-}
-#eventPage .nav {
-  position: fixed;
 }
 .test {
   margin-left: 150px;
