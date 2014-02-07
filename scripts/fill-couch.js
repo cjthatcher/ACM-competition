@@ -3,11 +3,12 @@
 
 // -- Init Code ----------------------------------------------------------------
 
-var       Q = require('q'),
-          _ = require('underscore'),
-       hash = require('password-hash'),
-         cc = require('config').couchConfig,
-    request = require('request');
+var  crypto = require('crypto');
+var       _ = require('underscore');
+var       Q = require('q');
+var    hash = require('password-hash');
+var      cc = require('config').couchConfig;
+var request = require('request');
 
 require('colors');
 
@@ -42,11 +43,17 @@ function createAdmin() {
   var deferred = Q.defer();
   var msg = 'Create Admin: ';
   var url = couchUrl + cc.db.user + '/admin';
+
   var obj = {
     name: 'admin',
     pass: hash.generate('admin'),
+    first: 'admin',
+    last: 'admin',
+    email: 'admin@usu-acm-competition.com',
     isAdmin: true
   };
+  obj.gravatar = crypto.createHash('md5').update(obj.email).digest('hex');
+
   request({
     url: url,
     method: 'PUT',

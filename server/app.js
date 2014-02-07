@@ -7,6 +7,7 @@ var express = require('express');
 var  config = require('config');
 
 var sessOptions = config.sessOptions;
+var store = require('./utils/session.js');
 
 var app = express();
 
@@ -21,7 +22,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
 app.use(express.session({
-  store: new express.session.MemoryStore(),
+  store: store,
   key: sessOptions.key,
   secret: sessOptions.secret
 }));

@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h3>{{result.eventLabel}}: {{result.questionLabel}}</h3>
+</div>
+
+<div class="modal-body">
+  <div><b>Name: </b> {{result.user}}</div>
+  <div><b>Time: </b> {{result.time | date:'h:mm:ss a'}}</div>
+  <div><b>Successful: </b> {{result.success && 'Yes' || 'No'}}</div>
+
+  <div>
+    <span ng-click="collapseSource = !collapseSource">
+      <b>Source Code:</b>
+      <span>(click to {{collapseSource && 'show' || 'hide'}})</span>
+    </span>
+    <div class="pre" collapse="collapseSource">{{result.source}}</div>
+  </div>
+
+  <div>
+    <span ng-click="collapseAnswer = !collapseAnswer">
+      <b>Answer:</b>
+      <span>(click to {{collapseAnswer && 'show' || 'hide'}})</span>
+    </span>
+    <div class="pre" collapse="collapseAnswer">{{result.answer}}</div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="dismiss()">Close</button>
+</div>

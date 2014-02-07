@@ -1,13 +1,14 @@
 <div id="eventPage">
   <ul class="nav cust-nav">
+    <li style="text-align:center">
+      <button class="btn btn-info" ng-click="openHighScores()">Leaderboard</button>
+    </li>
+
     <li ng-repeat="question in event.questions">
       <a class="nav-item" ng-class="{solved:question.solved}" ng-click="openQuestion($index)">
         <div>{{question.name}}</div>
         <div>{{question.subtitle}}</div>
       </a>
-    </li>
-    <li>
-      <a class="nav-item" ng-click="openHighScores()">LEADERBOARD</a>
     </li>
   </ul>
 

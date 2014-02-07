@@ -1,48 +1,29 @@
-<div class="title">Leaderboard</div>
+<div class="title">{{title}}</div>
 
 <tabset>
-  <tab heading="Overall">
-    <div ng-show="!overall.length">No one's solved anything yet!</div>
-
-    <table class="table table-striped" ng-show="overall.length">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Points</th>
-          <th>Current Time</th>
-          <th># Solved</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="user in overall">
-          <td>{{user.name}}</td>
-          <td>{{user.points}}</td>
-          <td>{{user.time | date:'h:mm:ss a'}}</td>
-          <td>{{user.solved}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </tab>
-
-  <tab heading="By Question">
-    <div ng-show="!questions.length">No one's solved anything yet!</div>
-    <div ng-repeat="q in questions">
-      <h3>{{q.title}}</h3>
-      <table class="table table-striped">
+  <tab ng-repeat="tab in tabs" heading="{{tab.heading}}">
+    <div ng-show="!tab.tables.length">No one's solved anything yet!</div>
+    <div ng-repeat="table in tab.tables">
+      <div class="title">{{table.heading}}</div>
+      <div ng-show="!table.data.length">No one's solved anything yet!</div>
+      <table class="table table-striped table-hover" ng-show="table.data.length">
         <thead>
           <tr>
+            <th></th>
             <th>Name</th>
+            <th ng-repeat="label in table.labels">{{label.lbl}}</th>
             <th>Time</th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="u in q.users">
-            <td>{{u.user}}</td>
-            <td>{{u.time | date:'h:mm:ss a'}}</td>
+          <tr ng-repeat="result in table.data | successful:success | filter:search" ng-click="show(result, tab.heading)">
+            <td><img ng-src="http://www.gravatar.com/avatar/{{result.gravatar}}?d=retro&r=pg" style="border-radius:40px"></td>
+            <td style="color:{{result.success && 'green' || 'red'}}">{{result.user}}</td>
+            <td ng-repeat="label in table.labels">{{result[label.key]}}</td>
+            <td>{{result.time | date:'h:mm:ss a'}}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </tab>
 </tabset>
-

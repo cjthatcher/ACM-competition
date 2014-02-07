@@ -1,8 +1,9 @@
 /* jshint node:true */
 'use strict';
 
-var hash = require('password-hash');
-var db = require('../utils/db.js');
+var crypto = require('crypto');
+var   hash = require('password-hash');
+var     db = require('../utils/db.js');
 
 module.exports = function (app) {
   app.post('/login',  login);
@@ -41,6 +42,8 @@ function signup(req, res) {
 
   user.pass = hash.generate(user.pass);
 
+  user.gravatar = _md5(user.email);
+
   db.createUser(user, function (err) {
     if (err) return res.fail('Username Already In Use');
 
@@ -66,4 +69,9 @@ function user(req, res) {
     success: true,
     user: req.session.user
   });
+}
+
+function _md5(str) {
+  str = str.trim().toLowerCase();
+  return crypto.createHash('md5').update(str).digest('hex');
 }

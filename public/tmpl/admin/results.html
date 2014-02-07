@@ -1,0 +1,8 @@
+<ul class="nav cust-nav cust-nav2">
+  <li ng-repeat="event in events" ng-class="{'active-item':isActive(event)}">
+    <a class="nav-item" ng-click="showResults(event.id)">{{event.name}}</a>
+    <div class="triangle"></div>
+  </li>
+</ul>
+
+<div ui-view class="subview">Click on a result to see it</div>

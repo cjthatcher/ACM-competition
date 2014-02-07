@@ -24,12 +24,12 @@ angular.module('acm').controller('questionCtrl',
     };
 
     $scope.submitAnswer = function () {
+      if (!files.out || !files.src)
+        return alerts.create('danger', 'Missing a file!');
+
       var outFiles = [];
       outFiles.push(files.out);
       outFiles.push(files.src);
-
-      if (outFiles.length < 2)
-        return alerts.create('danger', 'Missing a file!');
 
       $upload.upload({
         url: '/upload/' + id + '/' + index,

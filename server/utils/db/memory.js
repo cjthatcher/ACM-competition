@@ -3,9 +3,10 @@
 
 // -- Initialization -----------------------------------------------------------
 
-var _ = require('underscore');
-var hash = require('password-hash');
-var uuid = require('node-uuid');
+var crypto = require('crypto');
+var      _ = require('underscore');
+var   hash = require('password-hash');
+var   uuid = require('node-uuid');
 
 var users = {
   admin: {
@@ -17,6 +18,8 @@ var users = {
     isAdmin: true
   }
 };
+users.admin.gravatar = crypto.createHash('md5').update(users.admin.email).digest('hex');
+
 
 var events = {};
 

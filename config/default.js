@@ -10,7 +10,8 @@ module.exports = {
     db: {
       user: 'acm_users',
       event: 'acm_events',
-      results: 'acm_results'
+      results: 'acm_results',
+      session: 'acm_sessions'
     }
   },
   mongoConfig: {
@@ -22,6 +23,6 @@ module.exports = {
       event: 'events'
     }
   },
-  strategy: 'couch',
+  strategy: 'couch', // memory, couch, mongo
   port: 3000
 };

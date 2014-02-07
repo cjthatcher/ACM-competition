@@ -1,7 +1,8 @@
 <div id="adminPage">
-  <ul class="nav">
-    <li ng-repeat="item in nav">
-      <a class="nav-item" href="#{{item.url}}">{{item.label}}</a>
+  <ul class="nav cust-nav">
+    <li ng-repeat="item in nav" ng-class="{'active-item':isActive(item)}">
+      <a class="nav-item" ng-click="goTo(item.state)">{{item.label}}</a>
+      <div class="triangle {{item.class}}"></div>
     </li>
   </ul>
   <div class="subview" ui-view></div>

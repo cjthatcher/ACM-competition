@@ -1,31 +1,30 @@
 /* global angular, _ */
-angular.module('acm').controller('leaderboardCtrl',
-  function ($scope, $stateParams, $modal, $http, alerts, results, user) {
+angular.module('acm').controller('adminResultCtrl',
+  function ($scope, $modal, $stateParams, results, alerts) {
     'use strict';
+
+    $scope.url = 'tmpl/leaderboard.html';
 
     var id = $stateParams.id;
 
-    $scope.title = 'Leaderboard';
-
     $scope.tabs = [
       {
-        heading: 'Overall',
+        heading: 'All Submissions',
         tables: []
       },
       {
-        heading: 'By Question',
+        heading: 'Submissions By Question',
         tables: []
       }
     ];
 
-    results.getScores(id, function (err, results) {
+    results.getResults(id, function (err, results) {
       if (err) return alerts.create('danger', err);
 
       $scope.tabs[0].tables.push({
-        data: results.overall,
+        data: results.all,
         labels: [
-          { lbl: 'Points', key: 'points' },
-          { lbl: '# Solved', key: 'solved' }
+          { lbl: 'Question', key: 'questionLabel' }
         ]
       });
 
@@ -37,13 +36,7 @@ angular.module('acm').controller('leaderboardCtrl',
       });
     });
 
-    $scope.show = function (result, heading) {
-      if (heading === 'Overall') return;
-      if (!user.data) return;
-      if (!user.data.isAdmin) return;
-
-      result.success = true;
-      result.eventLabel = $scope.event.name;
+    $scope.show = function (result) {
       $modal.open({
         templateUrl: 'tmpl/m/result-info.html',
         controller: 'mResultInfo',

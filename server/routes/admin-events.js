@@ -5,7 +5,7 @@ var db = require('../utils/db.js');
 
 module.exports = function(app){
   app.get('/a/events',       app.m.isAdmin, getEvents);
-  app.get('/a/event/:id',    app.m.isAdmin, getEvent);
+  app.get('/a/event/:id',    app.m.isAdmin, app.m.grabEvent, getEvent);
   app.post('/a/event',       app.m.isAdmin, createEvent);
   app.post('/a/updateEvent', app.m.isAdmin, updateEvent);
   app.delete('/a/event/:id', app.m.isAdmin, deleteEvent);
@@ -23,13 +23,9 @@ function getEvents(req, res) {
 }
 
 function getEvent(req, res) {
-  db.getEvent(req.params.id, function (err, event) {
-    if (err) return res.fail(err);
-
-    res.send({
-      success: true,
-      event: event
-    });
+  res.send({
+    success: true,
+    event: req.acmEvent
   });
 }
 

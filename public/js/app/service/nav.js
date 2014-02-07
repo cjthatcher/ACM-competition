@@ -48,10 +48,24 @@ nav = [
     hidden: true
   },
   {
+    state: 'admin.results',
+    url:   '/results',
+    tmpl:  'tmpl/admin/results.html',
+    ctrl:  'adminResultsCtrl',
+    hidden: true
+  },
+  {
     state: 'admin.event',
     url:   '/event/:id',
     tmpl:  'tmpl/admin/event.html',
     ctrl:  'adminEventCtrl',
+    hidden: true
+  },
+  {
+    state: 'admin.results.result',
+    url:   '/:id',
+    tmpl:  'tmpl/admin/result.html',
+    ctrl:  'adminResultCtrl',
     hidden: true
   },
   {

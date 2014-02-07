@@ -2,78 +2,43 @@
 'use strict';
 
 var fs = require('fs');
-var  _ = require('underscore');
 var db = require('../utils/db.js');
 
 module.exports = function (app) {
-  app.get('/inp/:id/:index/:name', app.m.isLoggedIn, downloadInput);
-  app.post('/upload/:id/:index',   app.m.isLoggedIn, uploadFiles);
-  app.get('/scores/:id',           app.m.isLoggedIn, getScores);
+  app.get('/inp/:id/:index/:name', app.m.isLoggedIn, app.m.grabEvent, downloadInput);
+  app.post('/upload/:id/:index',   app.m.isLoggedIn, app.m.grabEvent, uploadFiles);
 };
 
 function downloadInput(req, res) {
-  db.getEvent(req.params.id, function (err, event) {
-    if (err) return res.fail(err);
-
-    if (event.available || req.session.user.isAdmin) {
-      res.setHeader('Content-Type', 'text/plain');
-      res.setHeader('Content-Disposition', 'attachment');
-      res.send(event.questions[req.params.index].aInput);
-    } else {
-      res.forbidden();
-    }
-  });
+  if (req.acmEvent.available || req.session.user.isAdmin) {
+    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Content-Disposition', 'attachment');
+    res.send(req.acmEvent.questions[req.params.index].aInput);
+  } else {
+    res.forbidden();
+  }
 }
 
 function uploadFiles(req, res) {
   var id = req.params.id;
   var index = req.params.index;
 
-  db.getEvent(id, function (err, event) {
-    if (err) return res.fail(err);
-
-    if (event.available || req.session.user.isAdmin) {
-      _getFiles(req, function (err, files) {
-        if (err) return res.fail(err);
-        var question = event.questions[index];
-        _verifySolution(res, files, id, index, question, req.session.user.name);
-      });
-    } else {
-      res.forbidden();
-    }
-  });
-}
-
-function getScores(req, res) {
-  var id = req.params.id;
-
-  db.getEvent(id, function (err, event) {
-    if (err) return res.fail(err);
-
-    db.getScores(id, function (err, scores) {
+  if (req.acmEvent.available || req.session.user.isAdmin) {
+    _getFiles(req, function (err, files) {
       if (err) return res.fail(err);
-
-      _.each(scores, function (score) {
-        var q = event.questions[score.question];
-        delete score.answer;
-        delete score.source;
-        delete score.success;
-        delete score.event;
-        score.questionLabel = q.name + ' - ' + q.subtitle;
-      });
-
-      res.send({
-        success: true,
-        scores: scores
-      });
+      var question = req.acmEvent.questions[index];
+      _verifySolution(res, files, id, index, question, req.session.user);
     });
-  });
+  } else {
+    res.forbidden();
+  }
 }
 
 function _verifySolution(res, files, id, index, question, user) {
   var result = {
     success: false,
-    user: user,
+    user: user.name,
+    gravatar: user.gravatar,
     time: +new Date(),
     source: files.src.trim(),
     answer: files.out.trim(),

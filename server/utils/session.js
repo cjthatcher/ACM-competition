@@ -4,8 +4,8 @@
 var strategy = require('config').strategy;
 
 try {
-  module.exports = require('./db/' + strategy + '.js');
+  module.exports = require('./session/' + strategy + '.js');
 } catch (e) {
-  console.error('[db] No such strategy: ' + strategy);
+  console.error('[session] No such strategy: ' + strategy);
   process.exit(1);
 }
