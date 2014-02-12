@@ -9,6 +9,7 @@ var       Q = require('q');
 var    hash = require('password-hash');
 var      cc = require('config').couchConfig;
 var request = require('request');
+var   spawn = require('child_process').spawn;
 
 require('colors');
 
@@ -30,6 +31,9 @@ var couchUrl = 'http://' + cc.host + ':' + cc.port + '/';
   Q.all(dbPromises).then(function (results) {
     _report('green', results);
     return createAdmin();
+  }).then(function (result) {
+    _report('green', result);
+    return createSession();
   }).then(function (result) {
     _report('green', result);
   }, function (err) {
@@ -90,6 +94,28 @@ function createDB(name) {
   return deferred.promise;
 }
 
+function createSession() {
+  var deferred = Q.defer();
+  var msg = 'createSessionView: ';
+
+  var args = [
+    'node_modules/connect-couchdb/tools/setup.js',
+    cc.db.session,
+    1000
+  ];
+
+  var err = '';
+  spawn('node', args).on('close', function (code) {
+    if (code === 0)
+    deferred.resolve(msg + 'view created successfully');
+    deferred.reject(msg + err);
+  }).stderr.on('data', function (data) {
+    err += data;
+  });
+
+  return deferred.promise;
+}
+
 // -- Private Functions --------------------------------------------------------
 
 function _report(status, msgs) {
@@ -99,8 +125,3 @@ function _report(status, msgs) {
     console.log(msg[status]);
   });
 }
-
-// function template() {
-//   var deferred = Q.defer();
-//   return deferred.promise;
-// }

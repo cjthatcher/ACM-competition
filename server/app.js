@@ -18,7 +18,7 @@ var fail = require(__dirname + '/middleware/fail-routes.js');
 // all environments
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.bodyParser());
+app.use(express.bodyParser({ limit: '2mb' }));
 app.use(express.methodOverride());
 app.use(express.cookieParser());
 app.use(express.session({

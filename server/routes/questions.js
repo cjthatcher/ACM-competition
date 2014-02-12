@@ -3,6 +3,7 @@
 
 var fs = require('fs');
 var db = require('../utils/db.js');
+var  Q = require('q');
 
 module.exports = function (app) {
   app.get('/inp/:id/:index/:name', app.m.isLoggedIn, app.m.grabEvent, downloadInput);
@@ -20,35 +21,36 @@ function downloadInput(req, res) {
 }
 
 function uploadFiles(req, res) {
-  var id = req.params.id;
-  var index = req.params.index;
-
   if (req.acmEvent.available || req.session.user.isAdmin) {
     _getFiles(req, function (err, files) {
       if (err) return res.fail(err);
-      var question = req.acmEvent.questions[index];
-      _verifySolution(res, files, id, index, question, req.session.user);
+      _verifySolution(req, res, files);
     });
   } else {
     res.forbidden();
   }
 }
 
-function _verifySolution(res, files, id, index, question, user) {
+function _verifySolution(req, res, files) {
+  var id = req.params.id;
+  var index = req.params.index;
+  var question = req.acmEvent.questions[index];
+  var user = req.session.user;
+
   var result = {
     success: false,
     user: user.name,
     gravatar: user.gravatar,
     time: +new Date(),
-    source: files.src.trim(),
-    answer: files.out.trim(),
+    answer: files[0].trim(),
+    source: files[1].trim(),
     event: id,
     question: index
   };
 
   var msg = 'Wrong Answer';
 
-  if (question.aOutput.trim() === files.out.trim()) {
+  if (question.aOutput.trim() === result.answer) {
     result.success = true;
     msg = 'Correct, Keep going!';
   }
@@ -68,15 +70,21 @@ function _verifySolution(res, files, id, index, question, user) {
 }
 
 function _getFiles(req, cb) {
-  var files = {};
-  for (var key in req.files) {
-    var file = req.files[key];
-    files[map[key]] = fs.readFileSync(file.path, 'utf8');
-  }
-  cb(null, files);
+  var promises = [
+    _getFile(req.files.file0.path), // out
+    _getFile(req.files.file1.path)  // src
+  ];
+
+  Q.all(promises).then(function (results) {
+    cb(null, results);
+  });
 }
 
-var map = {
-  file0: 'out',
-  file1: 'src'
-};
+function _getFile(path) {
+  var deferred = Q.defer();
+  fs.readFile(path, 'utf8', function (err, data) {
+    if (err) return deferred.reject(err);
+    deferred.resolve(data);
+  });
+  return deferred.promise;
+}

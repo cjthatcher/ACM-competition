@@ -3,6 +3,8 @@ angular.module('acm').controller('questionCtrl',
   function ($scope, $rootScope, $window, $state, $stateParams, $upload, alerts, events) {
     'use strict';
 
+    var MAX_SIZE = 1000000; // little less than a MB
+
     var id = $stateParams.id;
     var index = $stateParams.index;
 
@@ -24,8 +26,17 @@ angular.module('acm').controller('questionCtrl',
     };
 
     $scope.submitAnswer = function () {
-      if (!files.out || !files.src)
-        return alerts.create('danger', 'Missing a file!');
+      if (!files.out)
+        return alerts.create('danger', 'Missing your output file!');
+
+      if (!files.src)
+        return alerts.create('danger', 'Missing your source file!');
+
+      if (files.out.size > MAX_SIZE)
+        return alerts.create('danger', 'Your output file is too big! You sure it\'s text?');
+
+      if (files.src.size > MAX_SIZE)
+        return alerts.create('danger', 'Your source file is too big! You sure it\'s text?');
 
       var outFiles = [];
       outFiles.push(files.out);
@@ -40,6 +51,9 @@ angular.module('acm').controller('questionCtrl',
         $scope.question.solved = true;
         $rootScope.$emit('q:solved', index);
       }).error(function (err) {
+        if (err && err.error && err.error.message === 'Request Entity Too Large') {
+          err = 'Your files were way too big!! You sure they\'re just code and text?';
+        }
         alerts.create('danger', err);
       });
     };
