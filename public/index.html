@@ -1,21 +1,23 @@
 <html>
 <head>
   <title>ACM Coding</title>
+  <!-- build:css css/acm.min.css -->
   <link rel="stylesheet" href="css/lib/bootstrap.css">
   <link rel="stylesheet" href="css/app.css">
+  <!-- endbuild -->
 </head>
 <body>
   <div header></div>
   <div ui-view id="view"></div>
-  <div id="footer" footer></div>
+  <div footer id="footer"></div>
+  <!-- build:js js/acm.min.js -->
 
   <!-- Load Libraries -->
-  <script src="js/lib/jquery.min.js"></script>
-  <script src="js/lib/underscore.js"></script>
-  <script src="js/lib/angular.min.js"></script>
-  <script src="js/lib/angular-file-upload.min.js"></script>
-  <script src="js/lib/ui-router.js"></script>
-  <script src="js/lib/ui-bootstrap.js"></script>
+  <script src="js/ext/angular.js"></script>
+  <script src="js/ext/lib/angular-file-upload.js"></script>
+  <script src="js/ext/lib/ui-router.js"></script>
+  <script src="js/ext/lib/ui-bootstrap.js"></script>
+  <script src="js/ext/lib/underscore.js"></script>
 
   <!-- Load Module -->
   <script src="js/module.js"></script>
@@ -65,5 +67,6 @@
   <!-- Launch the App -->
   <script src="js/main.js"></script>
 
+  <!-- endbuild -->
 </body>
 </html>

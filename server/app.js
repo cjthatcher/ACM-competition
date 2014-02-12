@@ -28,12 +28,13 @@ app.use(express.session({
 }));
 app.use(fail);
 app.use(app.router);
-app.use(require('stylus').middleware('public'));
-app.use(express.static('public'));
 
-// development only
-if ('development' == app.get('env')) {
+if (isdev()) {
+  app.use(require('stylus').middleware('public'));
+  app.use(express.static('public'));
   app.use(express.errorHandler());
+} else {
+  app.use(express.static('build'));
 }
 
 app.m = {};
@@ -46,5 +47,9 @@ fs.readdirSync(__dirname + '/routes').forEach(function (file) {
 });
 
 http.createServer(app).listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Express server listening on port ' + app.get('port') + ' in env ' + app.get('env'));
 });
+
+function isdev() {
+  return app.get('env') == 'development' || app.get('env') == 'localdev';
+}

@@ -103,6 +103,7 @@
   background-color: #111;
   padding: 10px 0;
   position: fixed;
+  width: 150px;
 }
 #eventPage .nav-item {
   padding: 10px;
