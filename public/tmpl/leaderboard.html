@@ -1,10 +1,10 @@
-<div class="title">{{title}}</div>
+<div class="subtitle">{{title}}</div>
 
 <tabset>
   <tab ng-repeat="tab in tabs" heading="{{tab.heading}}">
     <div ng-show="!tab.tables.length">No one's solved anything yet!</div>
     <div ng-repeat="table in tab.tables">
-      <div class="title">{{table.heading}}</div>
+      <div ng-show="table.heading" class="subtitle">{{table.heading}}</div>
       <div ng-show="!table.data.length">No one's solved anything yet!</div>
       <table class="table table-striped table-hover" ng-show="table.data.length">
         <thead>

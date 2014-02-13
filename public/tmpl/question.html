@@ -1,6 +1,6 @@
-<div class="title">{{question.name}}</div>
+<div class="subtitle">{{question.name}}</div>
 
-<div>- {{question.subtitle}} -</div>
+<div class="bold-label">{{question.subtitle}}</div>
 
 <div class="pre indent-in">{{question.desc}}</div>
 
@@ -15,23 +15,23 @@
 <div class="pre indent-in">{{question.eInput}}</div>
 
 <div class="bold-label">Example Output:</div>
-<div class="pre indent-in">{{question.eOutput}}</div>
+<div class="pre indent-in" style="padding-bottom:15px">{{question.eOutput}}</div>
 
 <div ng-show="!question.solved">
-  <form>
-    <button class="btn" ng-click="downloadInput()">Get Input</button>
+  <form class="file-box">
+    <button style="margin-bottom: 10px" class="btn btn-warning file-btn" ng-click="downloadInput()">Get Input</button>
 
     <div>
-      <span>Output:</span>
+      <span class="file-label">Output:</span>
       <input type="file" ng-file-select="setFile('out', $files)">
     </div>
 
     <div>
-      <span>Source Code:</span>
+      <span class="file-label">Source Code:</span>
       <input type="file" ng-file-select="setFile('src', $files)">
     </div>
 
-    <button class="btn" ng-click="submitAnswer()">Submit Answer</button>
+    <button class="btn btn-success file-btn" ng-click="submitAnswer()">Submit Answer</button>
   </form>
 </div>
 

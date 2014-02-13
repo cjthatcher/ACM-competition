@@ -1,27 +1,66 @@
-.event
-  padding: 10px
-  cursor: pointer
-  border-bottom: 1px solid
+#preEvent
+  .event
+    padding: 20px
+    cursor: pointer
+    border-bottom: 1px solid
 
-  &:last-child
-    border-bottom: none
+    &:last-child
+      border-bottom: none
 
-  &:hover
-    background-color: #a77a7a
-
-  &.available
     &:hover
-      background-color: #7aa77a
+      background-color: #ddd
+
+    &.available
+      .ready
+        color: green
+
+  .ready
+    color: red
+    font-size: 20px
+
+  .title
+    font-size: 30px
+    font-weight: bold
+    padding-bottom: 20px
 
 #eventPage
+  background-color: white
+
+  .file-box
+    background-color: rgb(189, 189, 233)
+    padding: 12px
+    width: 400px
+
+  .file-label
+    display: inline-block
+    width: 110px
+    vertical-align: top
+
+  .file-btn
+    width: 100%
+
+  .title
+    margin-left: 150px
+    padding: 40px
+    border-bottom: 1px solid
+    font-size: 36px
+    font-weight: bold
+    background-color: #cacaca
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, .5)
+
+  .subtitle
+    text-align: center
+    font-size: 24px
+    padding-bottom: 30px
 
   .subview
     margin-left: 150px
+    max-width: 700px
 
   .cust-nav
     float: left
     height: 100%
-    background-color: #111 //rgb(83, 83, 83)
+    background-color: #111
     padding: 10px 0
     position: fixed
     width: 150px
@@ -29,13 +68,39 @@
   .nav-item
     padding: 10px
     max-width: 200px
-    color: rgb(27, 219, 255)
+
+    .place
+      color: #ff5a5a
+
+    .name
+      color: #8ee4ff
+
+    .checked
+      display: none
+      background: url('../img/check.png')
+      width: 50px
+      height: 45px
+      position: absolute
+      top: 5px
+      right: 0
+
+    &.selected
+      background-color: #3d3d3d
+
+      &:hover
+        background-color: #eee
 
     &.solved
-      color: green
+      position: relative
+
+      .checked
+        display: block
 
     &:hover
-      color: rgb(83, 83, 83)
+      .place
+        color: #ac4747
+      .name
+        color: #417f92
 
   .indent-in
     padding: 0 0 10px 50px

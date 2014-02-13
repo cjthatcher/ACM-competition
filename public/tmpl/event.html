@@ -1,20 +1,21 @@
 <div id="eventPage">
   <ul class="nav cust-nav">
-    <li style="text-align:center">
+    <li style="text-align:center;padding-bottom:10px">
       <button class="btn btn-info" ng-click="openHighScores()">Leaderboard</button>
     </li>
 
     <li ng-repeat="question in event.questions">
-      <a class="nav-item" ng-class="{solved:question.solved}" ng-click="openQuestion($index)">
-        <div>{{question.name}}</div>
-        <div>{{question.subtitle}}</div>
+      <a class="nav-item" ng-class="{solved:question.solved, selected:$index==state.params.index}" ng-click="openQuestion($index)">
+        <div class="place">{{question.name}}</div>
+        <div class="name">{{question.subtitle}}</div>
+        <span class="checked"></span>
       </a>
     </li>
   </ul>
 
-  <div class="title test">{{event.name}}</div>
-  <hr>
-  <div class="subview" ui-view>
+  <div class="title">{{event.name}}</div>
+
+  <div class="subview pad-content" ui-view>
     <div ng-show="event.available">Choose a question on the side to get started.</div>
     <div ng-show="!event.available">Looks like the competition hasn't started yet.</div>
   </div>

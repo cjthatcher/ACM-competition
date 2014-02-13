@@ -1,4 +1,12 @@
 #adminPage
+  background-color: white
+
+  .title
+    font-size: 36px
+
+  .subtitle
+    font-size: 24px
+    text-align: center
 
   .subview
     margin-left: 120px
@@ -6,17 +14,16 @@
   .cust-nav
     float: left
     height: 100%
-    background-color: #111 //rgb(83, 83, 83)
+    background-color: $nav_color
     padding: 10px 0
     position: fixed
 
   .cust-nav2
-    background-color: #333 //rgb(83, 83, 83)
+    background-color: $nav2_color
     padding: 10px 0
     position: fixed
 
   .active-item
-    // background-color: #818181
     position: relative
 
     .triangle
@@ -24,37 +31,35 @@
 
   .triangle
     display: none
-
     background: white
     position: absolute
     top: 10px
     right: 0
     height: 0
-    border: 10px solid #111
+    border: 10px solid $nav_color
     border-right: 12px solid white
 
     &.is-second-nav
-      border: 10px solid blue
+      border: 10px solid $nav2_color
       border-right: 12px solid white
 
     &.is-result-tab
-      border-right: 12px solid #333
+      border-right: 12px solid $nav2_color
 
   .nav-item
     padding: 10px
     width: 100px
-    color: rgb(27, 219, 255)
-
+    color: #1bdbff
 
     &:hover
-      color: rgb(83, 83, 83)
+      color: $nav_hover_text
 
       &+.triangle
-        border: 10px solid #eee
+        border: 10px solid $nav_hover_color
         border-right: 12px solid white
 
         &.is-result-tab
-          border-right: 12px solid #333
+          border-right: 12px solid $nav2_color
 
   .desc-box
     max-width: 250px

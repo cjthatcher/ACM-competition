@@ -1,30 +1,32 @@
-<button class="btn btn-info pull-right" ng-click="create()">Create</button>
+<div class="pad-content">
+  <button class="btn btn-info pull-right" ng-click="create()">Create</button>
 
-<div class="title">All Events</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Availability</th>
-      <th>Toggle</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="event in events">
-      <td>{{event.name}}</td>
-      <td>
-        <div class="desc-box">{{event.desc}}</div>
-      </td>
-      <td>
-        <button ng-show="event.available" class="btn btn-success" disabled>Open</button>
-        <button ng-show="!event.available" class="btn btn-danger" disabled>Closed</button>
-      </td>
-      <td><button class="btn" ng-click="toggleEvent(event)">Toggle</button></td>
-      <td><button class="btn btn-warning" ng-click="editEvent(event)">Edit</button></td>
-      <td><button class="btn btn-danger" ng-click="deleteEvent(event)">Delete</button></td>
-    </tr>
-  </tbody>
-</table>
+  <div class="title">All Events</div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Availability</th>
+        <th>Toggle</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="event in events">
+        <td>{{event.name}}</td>
+        <td>
+          <div class="desc-box">{{event.desc}}</div>
+        </td>
+        <td>
+          <button ng-show="event.available" class="btn btn-success" disabled>Open</button>
+          <button ng-show="!event.available" class="btn btn-danger" disabled>Closed</button>
+        </td>
+        <td><button class="btn" ng-click="toggleEvent(event)">Toggle</button></td>
+        <td><button class="btn btn-warning" ng-click="editEvent(event)">Edit</button></td>
+        <td><button class="btn btn-danger" ng-click="deleteEvent(event)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
