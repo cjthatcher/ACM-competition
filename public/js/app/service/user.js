@@ -1,18 +1,26 @@
 /* global angular */
 angular.module('acm').factory('user',
-  function ($http, $rootScope, $window) {
+  function ($http, $rootScope, $state, $window, $log) {
     'use strict';
+
+    function redirect() {
+      if (user.state) {
+        $state.transitionTo(user.state.to, user.state.toParams);
+      } else {
+        $state.transitionTo('index');
+      }
+    }
 
     var user = {};
 
     user.check = function () {
       $http.get('/user').success(function (data) {
-        if (data.success) {
-          user.data = data.user;
-          $rootScope.$emit('logged-in');
-        } else {
-          user.data = null;
-        }
+        user.data = data.user;
+        $rootScope.$emit('user-check');
+      }).error(function (err) {
+        $log.log(err);
+        user.data = null;
+        $rootScope.$emit('user-check');
       });
     };
 
@@ -25,8 +33,9 @@ angular.module('acm').factory('user',
       $http.post('/login', userObj).success(function (data) {
         if (!data.success) return cb(data.err);
         user.data = data.user;
-        $rootScope.$emit('logged-in');
+        $rootScope.$emit('user-check');
         cb();
+        redirect();
       });
     };
 
@@ -34,8 +43,9 @@ angular.module('acm').factory('user',
       $http.post('/signup', userObj).success(function (data) {
         if (!data.success) return cb(data.err);
         user.data = data.user;
-        $rootScope.$emit('logged-in');
+        $rootScope.$emit('user-check');
         cb();
+        redirect();
       });
     };
 
@@ -46,8 +56,8 @@ angular.module('acm').factory('user',
     };
 
     user.on = function (cb) {
-      if (user.data) return cb();
-      $rootScope.$on('logged-in', cb);
+      if (user.data !== undefined) return cb();
+      $rootScope.$on('user-check', cb);
     };
 
     return user;

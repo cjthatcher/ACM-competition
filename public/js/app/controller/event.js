@@ -1,12 +1,16 @@
 /* global angular */
 angular.module('acm').controller('eventCtrl',
-  function ($scope, $rootScope, $state, $stateParams, alerts, events) {
+  function ($scope, $rootScope, $state, $stateParams, $log, events) {
     'use strict';
 
     $scope.state = $state;
 
     events.get($stateParams.id, function (err, event) {
-      if (err) return alerts.create('error', err);
+      if (err) {
+        $log.error(err);
+        $state.transitionTo('events');
+        return;
+      }
       $scope.event = event;
     });
 

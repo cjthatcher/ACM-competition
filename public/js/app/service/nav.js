@@ -45,28 +45,32 @@ nav = [
     url:   '/users',
     tmpl:  'tmpl/admin/users.html',
     ctrl:  'adminUsersCtrl',
-    hidden: true
+    hidden: true,
+    admin: true
   },
   {
     state: 'admin.results',
     url:   '/results',
     tmpl:  'tmpl/admin/results.html',
     ctrl:  'adminResultsCtrl',
-    hidden: true
+    hidden: true,
+    admin: true
   },
   {
     state: 'admin.event',
     url:   '/event/:id',
     tmpl:  'tmpl/admin/event.html',
     ctrl:  'adminEventCtrl',
-    hidden: true
+    hidden: true,
+    admin: true
   },
   {
     state: 'admin.results.result',
     url:   '/:id',
     tmpl:  'tmpl/admin/result.html',
     ctrl:  'adminResultCtrl',
-    hidden: true
+    hidden: true,
+    admin: true
   },
   {
     label: 'Events',
@@ -81,21 +85,24 @@ nav = [
     url:   '/event/:id',
     tmpl:  'tmpl/event.html',
     ctrl:  'eventCtrl',
-    hidden: true
+    hidden: true,
+    loggedIn: true
   },
   {
     state: 'event.question',
     url:   '/q/:index',
     tmpl:  'tmpl/question.html',
     ctrl:  'questionCtrl',
-    hidden: true
+    hidden: true,
+    loggedIn: true
   },
   {
     state: 'event.leaderboard',
     url:   '/high-scores',
     tmpl:  'tmpl/leaderboard.html',
     ctrl:  'leaderboardCtrl',
-    hidden: true
+    hidden: true,
+    loggedIn: true
   }
 ];
 

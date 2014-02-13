@@ -13,9 +13,11 @@ This is the testing website for the ACM coding competitions at USU. word.
 5. `gulp`
 
 ###Todo
- - Users need a way to update/change their info
+ - Users need a way to update/change their info (profile)
  - Save creation date with event
  - feature: startdate, stopdate, duration
- - password reset stuff
  - on create user, don't set pass, send email instead
- - kick people to login screen if they aren't logged in
+ - password reset email
+ - password reset routes
+ - forgot my password
+ - dynamic (html) entries on index (for admin)

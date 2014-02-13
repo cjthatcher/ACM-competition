@@ -7,6 +7,7 @@ var db = require('../utils/db.js');
 module.exports = function (app) {
   app.get('/allEvents', app.m.isLoggedIn, getEvents);
   app.get('/event/:id', app.m.isLoggedIn, app.m.grabEvent, getEvent);
+  app.get('/event/', app.m.isLoggedIn, nope);
 };
 
 function getEvents(req, res) {
@@ -50,4 +51,8 @@ function getEvent(req, res) {
       event: req.acmEvent
     });
   });
+}
+
+function nope(req, res) {
+  res.fail('Invalid Event Id');
 }

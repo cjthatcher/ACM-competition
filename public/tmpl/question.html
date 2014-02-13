@@ -1,40 +1,42 @@
-<div class="subtitle">{{question.name}}</div>
+<div ng-show="question">
+  <div class="subtitle">{{question.name}}</div>
 
-<div class="bold-label">{{question.subtitle}}</div>
+  <div class="bold-label">{{question.subtitle}}</div>
 
-<div class="pre indent-in">{{question.desc}}</div>
+  <div class="pre indent-in">{{question.desc}}</div>
 
-<div class="bold-label">Input:</div>
-<div class="pre indent-in">{{question.input}}</div>
+  <div class="bold-label">Input:</div>
+  <div class="pre indent-in">{{question.input}}</div>
 
-<div class="bold-label">Output:</div>
-<div class="pre indent-in">{{question.output}}</div>
+  <div class="bold-label">Output:</div>
+  <div class="pre indent-in">{{question.output}}</div>
 
 
-<div class="bold-label">Example Input:</div>
-<div class="pre indent-in">{{question.eInput}}</div>
+  <div class="bold-label">Example Input:</div>
+  <div class="pre indent-in">{{question.eInput}}</div>
 
-<div class="bold-label">Example Output:</div>
-<div class="pre indent-in" style="padding-bottom:15px">{{question.eOutput}}</div>
+  <div class="bold-label">Example Output:</div>
+  <div class="pre indent-in" style="padding-bottom:15px">{{question.eOutput}}</div>
 
-<div ng-show="!question.solved">
-  <form class="file-box">
-    <button style="margin-bottom: 10px" class="btn btn-warning file-btn" ng-click="downloadInput()">Get Input</button>
+  <div ng-show="!question.solved">
+    <form class="file-box">
+      <button style="margin-bottom: 10px" class="btn btn-warning file-btn" ng-click="downloadInput()">Get Input</button>
 
-    <div>
-      <span class="file-label">Output:</span>
-      <input type="file" ng-file-select="setFile('out', $files)">
-    </div>
+      <div>
+        <span class="file-label">Output:</span>
+        <input type="file" ng-file-select="setFile('out', $files)">
+      </div>
 
-    <div>
-      <span class="file-label">Source Code:</span>
-      <input type="file" ng-file-select="setFile('src', $files)">
-    </div>
+      <div>
+        <span class="file-label">Source Code:</span>
+        <input type="file" ng-file-select="setFile('src', $files)">
+      </div>
 
-    <button class="btn btn-success file-btn" ng-click="submitAnswer()">Submit Answer</button>
-  </form>
-</div>
+      <button class="btn btn-success file-btn" ng-click="submitAnswer()">Submit Answer</button>
+    </form>
+  </div>
 
-<div ng-show="question.solved" class="alert alert-success">
-  Congrats!! You've already solved this one!!
+  <div ng-show="question.solved" class="alert alert-success">
+    Congrats!! You've already solved this one!!
+  </div>
 </div>

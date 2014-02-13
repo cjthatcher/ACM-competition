@@ -1,15 +1,24 @@
-/* global angular, nav */
+/* global angular, nav, _ */
 angular.module('acm', ['ui.router', 'ui.bootstrap', 'angularFileUpload']).config(
   function ($stateProvider, $urlRouterProvider) {
     'use strict';
 
-    for (var i = 0; i < nav.length; ++i) {
-      $stateProvider.state(nav[i].state, {
-        templateUrl: nav[i].tmpl,
-        controller: nav[i].ctrl,
-        url: nav[i].v_url || nav[i].url,
-        abstract: nav[i].abstract
-      });
+    _.each(nav, function (item) {
+      var state = {
+        templateUrl: item.tmpl,
+        controller: item.ctrl,
+        url: item.url
+      };
+
+      append(state, item, 'abstract');
+      append(state, item, 'loggedIn');
+      append(state, item, 'admin');
+
+      $stateProvider.state(item.state, state);
+    });
+
+    function append(state, item, key) {
+      if (item[key] !== undefined) state[key] = item[key];
     }
 
     $urlRouterProvider.otherwise('/');

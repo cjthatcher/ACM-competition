@@ -1,6 +1,6 @@
 /* global angular */
 angular.module('acm').controller('questionCtrl',
-  function ($scope, $rootScope, $window, $state, $stateParams, $upload, alerts, events) {
+  function ($scope, $rootScope, $window, $state, $stateParams, $upload, $log, alerts, events) {
     'use strict';
 
     var MAX_SIZE = 1000000; // little less than a MB
@@ -9,7 +9,22 @@ angular.module('acm').controller('questionCtrl',
     var index = $stateParams.index;
 
     events.get(id, function (err, event) {
-      if (err) return alerts.create('error', err);
+      if (err) {
+        $log.error(err);
+        return;
+      }
+      if (!event.questions) {
+        $state.transitionTo('event', {
+          id: id
+        });
+        return;
+      }
+      if (index >= event.questions.length) {
+        $state.transitionTo('event', {
+          id: id
+        });
+        return;
+      }
       $scope.question = event.questions[index];
     });
 
