@@ -12,7 +12,7 @@ This is the testing website for the ACM coding competitions at USU. word.
 4. `npm install -g gulp`
 5. `gulp`
 
-###Todo
+###todo
  - Users need a way to update/change their info (profile)
  - Save creation date with event
  - feature: startdate, stopdate, duration
@@ -21,3 +21,6 @@ This is the testing website for the ACM coding competitions at USU. word.
  - password reset routes
  - forgot my password
  - dynamic (html) entries on index (for admin)
+ - FIX FIREFOX STYLING ISSUES
+ - MAKE SURE DB IS ALL SET
+ - MAKE SURE HOSTING IS ALL SET
