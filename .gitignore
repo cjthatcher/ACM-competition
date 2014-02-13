@@ -2,6 +2,9 @@
 node_modules/
 npm-debug.log
 
+public/css/app.css
+
 config/localdev.js
 config/production.js
+
 build/
