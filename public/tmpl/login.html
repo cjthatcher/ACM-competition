@@ -1,20 +1,22 @@
-<form class="form-horizontal" style="margin-top: 25px">
-  <legend>Login</legend>
-  <div class="control-group">
-    <label class="control-label">Username:</label>
-    <div class="controls">
-      <input ng-model="name" type="text" autofocus>
+<div id="authPage">
+  <form class="form-horizontal auth-form">
+    <legend>Login</legend>
+    <div class="control-group">
+      <label class="control-label">Username:</label>
+      <div class="controls">
+        <input ng-model="name" type="text" autofocus>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label">Password:</label>
-    <div class="controls">
-      <input ng-model="pass" type="password">
+    <div class="control-group">
+      <label class="control-label">Password:</label>
+      <div class="controls">
+        <input ng-model="pass" type="password">
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <div class="controls">
-      <input ng-click="login(name, pass)" type="submit" value="Login" class="btn btn-success">
+    <div class="control-group">
+      <div class="controls">
+        <input ng-click="login(name, pass)" type="submit" value="Login" class="btn btn-success">
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
