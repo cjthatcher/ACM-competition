@@ -1,8 +1,10 @@
 /* jshint node:true */
 'use strict';
 
-var  _ = require('underscore');
-var db = require('../utils/db.js');
+var crypto = require('crypto');
+var      _ = require('underscore');
+var     db = require('../utils/db.js');
+var   hash = require('password-hash');
 
 module.exports = function (app) {
   app.post('/a/user',          app.m.isAdmin, createUser);
@@ -13,7 +15,15 @@ module.exports = function (app) {
 };
 
 function createUser(req, res) {
-  db.createUser(req.body, function (err) {
+  var user = req.body;
+
+  if (!user.name || !user.pass || !user.first || !user.last || !user.email)
+    return res.fail('Missing Information');
+
+  user.pass = hash.generate(user.pass);
+  user.gravatar = _md5(user.email);
+
+  db.createUser(user, function (err) {
     if (err) return res.fail(err);
     res.send({
       success: true
@@ -52,4 +62,9 @@ function deleteUser(req, res) {
     if (err) return res.fail(err);
     res.send({ success: true });
   });
+}
+
+function _md5(str) {
+  str = str.trim().toLowerCase();
+  return crypto.createHash('md5').update(str).digest('hex');
 }

@@ -14,7 +14,6 @@ This is the testing website for the ACM coding competitions at USU. word.
 
 ###todo
  - Users need a way to update/change their info (profile)
- - Save creation date with event
  - feature: startdate, stopdate, duration
  - on create user, don't set pass, send email instead
  - password reset email
@@ -22,4 +21,3 @@ This is the testing website for the ACM coding competitions at USU. word.
  - forgot my password
  - dynamic (html) entries on index (for admin)
  - FIX FIREFOX STYLING ISSUES
- - MAKE SURE HOSTING IS ALL SET

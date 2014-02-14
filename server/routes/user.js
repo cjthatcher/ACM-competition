@@ -41,7 +41,6 @@ function signup(req, res) {
     return res.fail('Missing Information');
 
   user.pass = hash.generate(user.pass);
-
   user.gravatar = _md5(user.email);
 
   db.createUser(user, function (err) {

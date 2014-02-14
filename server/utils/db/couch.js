@@ -23,6 +23,8 @@ exports.getUser = function (name, cb) {
 
 exports.createUser = function (user, cb) {
   user._id = user.name;
+  user.createdOn = +new Date();
+  user.modifiedOn = +new Date();
   _couchSave(cc.db.user, user, cb);
 };
 
@@ -33,6 +35,8 @@ exports.updateUser = function (user, cb) {
     user._id = oldUser._id;
     user._rev = oldUser._rev;
     user.pass = oldUser.pass;
+    user.createdOn = oldUser.createdOn;
+    user.modifiedOn = +new Date();
     _couchSave(cc.db.user, user, cb);
   }, true);
 };
@@ -61,6 +65,8 @@ exports.createEvent = function (event, cb) {
     var id = uuid.v1();
     event.id = id;
     event._id = id;
+    event.createdOn = +new Date();
+    event.modifiedOn = +new Date();
   _couchSave(cc.db.event, event, cb);
 };
 
@@ -70,6 +76,8 @@ exports.updateEvent = function (event, cb) {
     if (err) return cb(err);
     event._id = oldEvent._id;
     event._rev = oldEvent._rev;
+    event.createdOn = oldEvent.createdOn;
+    event.modifiedOn = +new Date();
     _couchSave(cc.db.event, event, cb);
   }, true);
 };
