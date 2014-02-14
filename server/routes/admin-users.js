@@ -51,6 +51,9 @@ function resetPassword(req, res) {
 }
 
 function updateUser(req, res) {
+  if (req.body.email) {
+    req.body.gravatar = _md5(req.body.email);
+  }
   db.updateUser(req.body, function (err) {
     if (err) return res.fail(err);
     res.send({ success: true });
