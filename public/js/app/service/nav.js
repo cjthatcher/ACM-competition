@@ -73,6 +73,14 @@ nav = [
     admin: true
   },
   {
+    state: 'admin.posts',
+    url:   '/posts',
+    tmpl:  'tmpl/admin/posts.html',
+    ctrl:  'adminPostsCtrl',
+    hidden: true,
+    admin: true
+  },
+  {
     label: 'Events',
     state: 'events',
     url:   '/events',

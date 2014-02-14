@@ -16,6 +16,10 @@ angular.module('acm').controller('adminCtrl',
         label: 'Results',
         state: 'admin.results',
         class: 'is-result-tab'
+      },
+      {
+        label: 'Posts',
+        state: 'admin.posts'
       }
     ];
 

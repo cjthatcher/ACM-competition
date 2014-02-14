@@ -11,7 +11,8 @@ module.exports = {
       user: 'acm_users',
       event: 'acm_events',
       results: 'acm_results',
-      session: 'acm_sessions'
+      session: 'acm_sessions',
+      posts: 'acm_posts'
     }
   },
   mongoConfig: {

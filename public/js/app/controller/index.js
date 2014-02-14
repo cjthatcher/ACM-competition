@@ -1,8 +1,11 @@
 /* global angular */
 angular.module('acm').controller('indexCtrl',
-  function ($scope) {
+  function ($scope, $log, adminPosts) {
     'use strict';
 
-    $scope.news = 'news goes here';
+    adminPosts.all(function (err, posts) {
+      if (err) return $log.error(err);
+      $scope.posts = posts;
+    });
   }
 );

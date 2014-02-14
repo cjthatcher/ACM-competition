@@ -3,5 +3,10 @@
     <h1>ACM Coding Competition</h1>
   </div>
 
-  <div class="pre">{{news}}</div>
+  <div class="post" ng-repeat="post in posts | orderBy:'createdOn':true">
+    <div class="title">{{post.title}}</div>
+    <div class="author">By {{post.author}}</div>
+    <div class="when">-Written on {{post.createdOn | date:'fullDate'}} at {{post.createdOn | date:'shortTime'}}-</div>
+    <div class="pre text">{{post.post}}</div>
+  </div>
 </div>

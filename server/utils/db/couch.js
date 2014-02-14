@@ -86,6 +86,41 @@ exports.deleteEvent = function (id, cb) {
   _couchDelete(cc.db.event, id, cb);
 };
 
+// -- Post Methods ------------------------------------------------------------
+
+exports.getPosts = function (cb) {
+  _couchGetAll(cc.db.posts, cb);
+};
+
+exports.getPost = function (id, cb) {
+  _couchGet(cc.db.posts, id, cb);
+};
+
+exports.createPost = function (post, cb) {
+    var id = uuid.v1();
+    post.id = id;
+    post._id = id;
+    post.createdOn = +new Date();
+    post.modifiedOn = +new Date();
+  _couchSave(cc.db.posts, post, cb);
+};
+
+exports.updatePost = function (post, cb) {
+  var id = post.id;
+  _couchGet(cc.db.posts, id, function (err, oldPost) {
+    if (err) return cb(err);
+    post._id = oldPost._id;
+    post._rev = oldPost._rev;
+    post.createdOn = oldPost.createdOn;
+    post.modifiedOn = +new Date();
+    _couchSave(cc.db.posts, post, cb);
+  }, true);
+};
+
+exports.deletePost = function (id, cb) {
+  _couchDelete(cc.db.posts, id, cb);
+};
+
 // -- Results Methods ----------------------------------------------------------
 
 exports.saveResult = function (result, cb) {

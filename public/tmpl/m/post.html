@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h3>{{type.title}} Post</h3>
+</div>
+
+<div class="modal-body">
+  <form>
+    <div class="q-input">
+      <label>Title:</label>
+      <input type="text" ng-model="nPost.title">
+    </div>
+
+    <div class="q-input pull-right">
+      <label>Author:</label>
+      <input type="text" ng-model="nPost.author">
+    </div>
+
+    <label>Post:</label>
+    <textarea class="q-area" ng-model="nPost.post"></textarea>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="dismiss()">Cancel</button>
+  <button class="btn btn-success" ng-disabled="!nPost.title || !nPost.author || !nPost.post" ng-click="close(nPost)">{{type.btn}}</button>
+</div>
