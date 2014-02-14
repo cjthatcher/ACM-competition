@@ -8,7 +8,8 @@ var       _ = require('underscore');
 var    uuid = require('node-uuid');
 var      cc = require('config').couchConfig;
 
-var couchUrl = 'http://' + cc.host + ':' + cc.port + '/';
+var authPiece = cc.user ? cc.user + ':' + cc.pass + '@' : '';
+var couchUrl = 'http://' + authPiece + cc.host + ':' + cc.port + '/';
 
 // -- User Methods -------------------------------------------------------------
 

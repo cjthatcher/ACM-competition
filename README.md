@@ -22,5 +22,4 @@ This is the testing website for the ACM coding competitions at USU. word.
  - forgot my password
  - dynamic (html) entries on index (for admin)
  - FIX FIREFOX STYLING ISSUES
- - MAKE SURE DB IS ALL SET
  - MAKE SURE HOSTING IS ALL SET

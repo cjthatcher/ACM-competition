@@ -18,7 +18,8 @@ if (!cc) {
   process.exit(0);
 }
 
-var couchUrl = 'http://' + cc.host + ':' + cc.port + '/';
+var authPiece = cc.user ? cc.user + ':' + cc.pass + '@' : '';
+var couchUrl = 'http://' + authPiece + cc.host + ':' + cc.port + '/';
 
 // -- Driver Code --------------------------------------------------------------
 
@@ -103,6 +104,10 @@ function createSession() {
     cc.db.session,
     1000
   ];
+  if (cc.user) {
+    args.push(cc.user);
+    args.push(cc.pass);
+  }
 
   var err = '';
   spawn('node', args).on('close', function (code) {
