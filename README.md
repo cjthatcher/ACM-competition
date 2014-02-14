@@ -20,4 +20,3 @@ This is the testing website for the ACM coding competitions at USU. word.
  - password reset routes
  - forgot my password
  - dynamic (html) entries on index (for admin)
- - FIX FIREFOX STYLING ISSUES
