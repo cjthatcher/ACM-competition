@@ -14,10 +14,10 @@ module.exports = function (app) {
 
 function login(req, res) {
   db.getUser(req.body.name, function (err, user) {
-    if (err) return res.fail('No User Found');
+    if (err) return res.fail('Invalid Username or Password.');
 
     if (!hash.verify(req.body.pass, user.pass))
-      return res.fail('Incorrect Credentials');
+      return res.fail('Invalid Username or Password.');
 
     req.session.user = user;
 

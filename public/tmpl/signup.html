@@ -39,7 +39,7 @@
     </div>
     <div class="control-group">
       <div class="controls">
-        <input ng-click="signup(nUser)" ng-disabled="nUser.pass != pass || !nUser.name || !nUser.pass || !nUser.email || !nUser.first || !nUser.last" type="submit" value="Sign Up" class="btn btn-success">
+        <input ng-click="signup(nUser, pass)" ng-disabled="progress" type="submit" value="{{progress && 'Signing Up' || 'Sign Up'}}" class="btn btn-success">
       </div>
     </div>
   </form>
