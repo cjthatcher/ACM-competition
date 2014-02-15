@@ -32,7 +32,7 @@
         <input type="file" ng-file-select="setFile('src', $files)">
       </div>
 
-      <button class="btn btn-success file-btn" ng-click="submitAnswer()">Submit Answer</button>
+      <button ng-disabled="progress" class="btn btn-success file-btn" ng-click="submitAnswer()">{{progress && 'Submitting...' || 'Submit Answer'}}</button>
     </form>
   </div>
 

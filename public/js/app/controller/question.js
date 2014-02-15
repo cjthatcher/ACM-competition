@@ -40,6 +40,7 @@ angular.module('acm').controller('questionCtrl',
       files[which] = $files[0];
     };
 
+    $scope.progress = false;
     $scope.submitAnswer = function () {
       if (!files.out)
         return alerts.create('danger', 'Missing your output file!');
@@ -57,15 +58,18 @@ angular.module('acm').controller('questionCtrl',
       outFiles.push(files.out);
       outFiles.push(files.src);
 
+      $scope.progress = true;
       $upload.upload({
         url: '/upload/' + id + '/' + index,
         file: outFiles
       }).success(function (data) {
+        $scope.progress = false;
         if (!data.success) return alerts.create('danger', data.err);
         alerts.create('success', data.msg);
         $scope.question.solved = true;
         $rootScope.$emit('q:solved', index);
       }).error(function (err) {
+        $scope.progress = false;
         if (err && err.error && err.error.message === 'Request Entity Too Large') {
           err = 'Your files were way too big!! You sure they\'re just code and text?';
         }
