@@ -21,8 +21,6 @@ angular.module('acm').controller('adminEventCtrl',
         adminEvents.update(event, function (err) {
           if (err) return alerts.create('error', err);
           alerts.create('success', 'Event Updated!');
-          event.questions = [];
-          event.available = false;
           $scope.event = event;
         });
       });

@@ -1,8 +1,8 @@
 <div class="pad-content">
-  <button class="btn btn-warning" ng-click="editInfo('desc')">Edit</button>
-  <div class="title">{{event.name}}</div>
-  <div>{{event.desc}}</div>
-  <div>
+  <button class="btn btn-warning" ng-click="editInfo()">Edit</button>
+  <div class="title" style="padding:10px 0">{{event.name}}</div>
+  <div class="pre">{{event.desc}}</div>
+  <div style="padding:10px 0">
     <button ng-show="event.available" class="btn btn-success" disabled>Open</button>
     <button ng-show="!event.available" class="btn btn-danger" disabled>Closed</button>
   </div>
